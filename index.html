@@ -321,6 +321,37 @@
             padding: 0 2rem;
         }
 
+        .container-prob {
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .problem-grid {
+            display: grid;
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+        
+        .problem-card {
+            background: white;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid #667eea;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.25rem;
+            color: #667eea;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .problem-card p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
         /* Footer */
         footer {
             background-color: rgba(11, 20, 34, 1);
@@ -513,6 +544,32 @@
             </div>
         </div>
     </section>
+
+
+
+    <div class="container-prob">
+        <div class="problem-grid">
+            <div class="problem-card">
+                <h3>The Ambiguity Problem</h3>
+                <p>When assets lack consistent identifiers, operations target the wrong entities. Commands execute against unintended units. Monitoring alerts cannot be correlated to specific assets. Access controls apply incorrectly. The failure is silent—no error is thrown, no exception logged—the system simply acts on the wrong target.</p>
+            </div>
+            
+            <div class="problem-card">
+                <h3>The Fragmentation Problem</h3>
+                <p>Different teams, systems, and time periods produce incompatible naming schemes. Historical data becomes unlinkable. Cross-system correlation requires custom translation logic. Each integration point needs identifier mapping. Automation must handle multiple conventions simultaneously, reducing coverage and reliability with each variation.</p>
+            </div>
+            
+            <div class="problem-card">
+                <h3>The Scale Problem</h3>
+                <p>Without systematic naming, complexity grows faster than fleet size. Search operations degrade from constant-time lookups to linear scans. Validation requires comparing each identifier against all existing ones. Operators cannot internalize patterns or recognize assets. Beyond critical thresholds, operations become impossible, not merely inefficient.</p>
+            </div>
+            
+            <div class="problem-card">
+                <h3>The Integration Problem</h3>
+                <p>Modern infrastructure involves multiple systems: monitoring, configuration management, access control, logging, inventory. Each demands reliable identification. Without universal naming, every integration requires translation layers. These mappings introduce latency, failure points, and synchronization challenges. When identity varies across systems, correlating information becomes impossible.</p>
+            </div>
+        </div>
+    </div>
 
     <section class="features">
         <h2>Why OASIS Changes Everything</h2>
