@@ -342,6 +342,17 @@
             margin-bottom: 60px;
             grid-template-columns: repeat(2, minmax(350px, 1fr));
         }
+
+        .problem-grid::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #e0e0e0, #3b82f6, #e0e0e0);
+            transform: translateX(-50%);
+        }
         
         .problem-card {
             background: white;
