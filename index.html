@@ -340,7 +340,7 @@
             display: grid;
             gap: 32px;
             margin-bottom: 60px;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(2, minmax(350px, 1fr));
         }
         
         .problem-card {
@@ -349,6 +349,14 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             border-left: 4px solid #667eea;
+        }
+
+        .problem-card-empty {
+            
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+           
         }
         
         .problem-card h3 {
@@ -567,9 +575,9 @@
                 <p>When assets lack consistent identifiers, operations target the wrong entities. Commands execute against unintended units. Monitoring alerts cannot be correlated to specific assets. Access controls apply incorrectly. The failure is silent—no error is thrown, no exception logged—the system simply acts on the wrong target.</p>
             </div>
             
-            <div class="problem-card">
+            <div class="problem-card-empty">
             </div>
-            <div class="problem-card">
+            <div class="problem-card-empty">
             </div>
             
             <div class="problem-card">
@@ -582,9 +590,9 @@
                 <p>Without systematic naming, complexity grows faster than fleet size. Search operations degrade from constant-time lookups to linear scans. Validation requires comparing each identifier against all existing ones. Operators cannot internalize patterns or recognize assets. Beyond critical thresholds, operations become impossible, not merely inefficient.</p>
             </div>
 
-            <div class="problem-card">
+            <div class="problem-card-empty">
             </div>
-            <div class="problem-card">
+            <div class="problem-card-empty">
             </div>
             
             <div class="problem-card">
