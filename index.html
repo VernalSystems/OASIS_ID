@@ -341,7 +341,7 @@
             display: grid;
             gap: 32px;
             /*margin-bottom: 60px;*/
-            grid-template-columns: repeat(2, minmax(350px, 1fr));
+            grid-template-columns: repeat(5, minmax(150px, 1fr));
             position: relative;
         }
 
@@ -581,15 +581,15 @@
 
 
     <div class="container-prob" style="margin-right:120px;">
-        <h2>Some Problems</h2>
-        <!--div class="accent-line"></div-->
+        <h2>Naming is Hard</h2>
+        <div class="accent-line"></div>
         <div class="problem-grid">
-            <div class="problem-card">
+            <div class="problem-card" style="grid-column: span 3;">
                 <h3>The Ambiguity Problem</h3>
                 <p>When assets lack consistent identifiers, operations target the wrong entities. Commands execute against unintended units. Monitoring alerts cannot be correlated to specific assets. Access controls apply incorrectly. The failure is silent—no error is thrown, no exception logged—the system simply acts on the wrong target.</p>
             </div>
             
-            <div class="problem-card-empty" style="background-image:url(p1.jpg);background-repeat:no-repeat;background-size:contain;background-position:center;">
+            <div class="problem-card-empty" style="background-image:url(p1.jpg);background-repeat:no-repeat;background-size:contain;background-position:center;grid-column: span 2;">
             </div>
 
             <div class="problem-card-empty">
@@ -603,10 +603,10 @@
 
     <div class="container-prob" style="margin-left:120px;">
         <div class="problem-grid">
-            <div class="problem-card-empty" style="background-image:url(p2.jpg);background-repeat:no-repeat;background-size:contain;background-position:center;">
+            <div class="problem-card-empty" style="background-image:url(p2.jpg);background-repeat:no-repeat;background-size:contain;background-position:center;grid-column: span 2;">
             </div>
             
-            <div class="problem-card">
+            <div class="problem-card" style="grid-column: span 3;">
                 <h3>The Fragmentation Problem</h3>
                 <p>Different teams, systems, and time periods produce incompatible naming schemes. Historical data becomes unlinkable. Cross-system correlation requires custom translation logic. Each integration point needs identifier mapping. Automation must handle multiple conventions simultaneously, reducing coverage and reliability with each variation.</p>
             </div>
@@ -625,12 +625,12 @@
     <div class="container-prob" style="margin-right:120px;">
         <div class="problem-grid">
             
-            <div class="problem-card">
+            <div class="problem-card" style="grid-column: span 3;">
                 <h3>The Scale Problem</h3>
                 <p>Without systematic naming, complexity grows faster than fleet size. Search operations degrade from constant-time lookups to linear scans. Validation requires comparing each identifier against all existing ones. Operators cannot internalize patterns or recognize assets. Beyond critical thresholds, operations become impossible, not merely inefficient.</p>
             </div>
 
-            <div class="problem-card-empty" style="background-image:url(p3.jpg);background-repeat:no-repeat;background-size:contain;background-position:center;">
+            <div class="problem-card-empty" style="background-image:url(p3.jpg);background-repeat:no-repeat;background-size:contain;background-position:center;grid-column: span 2;">
             </div>
 
             
@@ -647,9 +647,9 @@
 
     <div class="container-prob" style="margin-left:120px;">
         <div class="problem-grid">
-            <div class="problem-card-empty" style="background-image:url(p4.jpg);background-repeat:no-repeat;background-size:contain;background-position:center;">
+            <div class="problem-card-empty" style="background-image:url(p4.jpg);background-repeat:no-repeat;background-size:contain;background-position:center;grid-column: span 2;">
             </div>
-            <div class="problem-card">
+            <div class="problem-card" style="grid-column: span 3;">
                 <h3>The Integration Problem</h3>
                 <p>Modern infrastructure involves multiple systems: monitoring, configuration management, access control, logging, inventory. Each demands reliable identification. Without universal naming, every integration requires translation layers. These mappings introduce latency, failure points, and synchronization challenges. When identity varies across systems, correlating information becomes impossible.</p>
             </div>
