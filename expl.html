@@ -54,6 +54,7 @@
         }
         .hero-content .problem-card p {
             text-align: justify;
+            font-size: unset;
         }
 
         .hero h1 {
@@ -553,7 +554,7 @@
 
 
 
-                <div class="container-prob" style="margin-right:120px;">
+                <div class="container-prob" >
                     <h2>How OASIS Works</h2>
                     <div class="accent-line"></div>
                     <div class="problem-grid">
@@ -581,6 +582,42 @@
                                 The numeric suffix provides an additional uniqueness layer, ensuring statistically negligible collision probability even in large-scale systems.
                             </p>
                         </div>
+
+                        <div class="problem-card" style="grid-column: span 5;">
+                            <h3>2. Credentials and Proof</h3>
+                            
+
+                            <div class="oasis-string" id="oasisString">
+                                #[Signatures, and other annotations]
+                            </div>
+                                
+                            <p>
+                                This section encodes public credentials associated with the entity.
+                                The square brackets imply a hierarchical object — not a flat list. Credentials may include:
+                            </p>
+
+                            <ol>
+                                <li>
+                                    Cryptographic signatures or certificate chains
+                                </li>
+                                <li>
+                                    Timestamped attestations or hashes
+                                </li>
+                                <li>
+                                    Role or authority markers
+                                </li>
+                                <li>
+                                    Extended metadata for verification or lineage tracking
+                                </li>
+                            </ol>
+
+                            <p>
+                                These annotations serve as verifiable proof of authenticity and integrity, usable in both centralized and federated trust environments.
+                                OASIS doesn't natively define a format/specification for this data. Any future protocol, using OASIS specifications, would have to include such specifications by themselves.
+                            </p>
+        
+                            
+                        </div>
                         
                        
                     </div>
@@ -597,78 +634,7 @@
 
     
 
-    <div class="container-prob" style="margin-left:120px;">
-        <div class="problem-grid">
-            <div class="problem-card-empty" style="background-image:url(p2.jpg);background-repeat:no-repeat;background-size:cover;background-position:center;grid-column: span 2;">
-            </div>
-            
-            <div class="problem-card" style="grid-column: span 3;">
-                <h3>The Fragmentation Problem</h3>
-                <p>Different teams, systems, and time periods produce incompatible naming schemes. Historical data becomes unlinkable. Cross-system correlation requires custom translation logic. Each integration point needs identifier mapping. Automation must handle multiple conventions simultaneously, reducing coverage and reliability with each variation.</p>
-            </div>
-
-            
-            <div class="problem-card-empty">
-                
-            </div>
-            <div class="problem-card-empty">
-                
-            </div>
-            
-        </div>
-    </div>
-
-    <div class="container-prob" style="margin-right:120px;">
-        <div class="problem-grid">
-            
-            <div class="problem-card" style="grid-column: span 3;">
-                <h3>The Scale Problem</h3>
-                <p>Without systematic naming, complexity grows faster than fleet size. Search operations degrade from constant-time lookups to linear scans. Validation requires comparing each identifier against all existing ones. Operators cannot internalize patterns or recognize assets. Beyond critical thresholds, operations become impossible, not merely inefficient.</p>
-            </div>
-
-            <div class="problem-card-empty" style="background-image:url(p3.jpg);background-repeat:no-repeat;background-size:cover;background-position:center;grid-column: span 2;">
-            </div>
-
-            
-            <div class="problem-card-empty">
-                
-            </div>
-            <div class="problem-card-empty">
-                
-            </div>
-            
-            
-        </div>
-    </div>
-
-    <div class="container-prob" style="margin-left:120px;">
-        <div class="problem-grid">
-            <div class="problem-card-empty" style="background-image:url(p4.jpg);background-repeat:no-repeat;background-size:cover;background-position:center;grid-column: span 2;">
-            </div>
-            <div class="problem-card" style="grid-column: span 3;">
-                <h3>The Integration Problem</h3>
-                <p>Modern infrastructure involves multiple systems: monitoring, configuration management, access control, logging, inventory. Each demands reliable identification. Without universal naming, every integration requires translation layers. These mappings introduce latency, failure points, and synchronization challenges. When identity varies across systems, correlating information becomes impossible.</p>
-            </div>
-            <div class="problem-card-empty">
-                
-            </div>
-            <div class="problem-card-empty">
-                
-            </div>
-        </div>
-        
-    </div>
-
-     <div class="container-prob" style="padding-bottom: 60px;">
-        <div class="problem-grid">
-            
-            <div class="problem-card" style="grid-column: span 3; background:unset; border-left-color:#dba80d; ">
-                <button class="cta-button" onclick="window.location.href='problems.html';" style="background:#1c5702; ">Read more: Identified Problems</button>
-                <br><br>
-                <p style="color:#b4bbc6;">associated with traditional naming schemes</p>
-            </div>
-        </div>
-    </div>
+    
 
     <section class="features">
         <h2>What OASIS can do</h2>
