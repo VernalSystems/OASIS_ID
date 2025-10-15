@@ -146,7 +146,7 @@
             background: linear-gradient(135deg, rgba(156, 136, 255, 0.1), rgba(156, 136, 255, 0.05));
             border-left: 3px solid #9c88ff;
         }
-        .tags { 
+        .signatures { 
             background: linear-gradient(135deg, rgba(72, 187, 120, 0.1), rgba(72, 187, 120, 0.05));
             border-left: 3px solid #48bb4e;
         }
@@ -224,7 +224,7 @@
         .cta-section {
             padding: 5rem 2rem;
             text-align: center;
-            background: linear-gradient(135deg, #1a2332 0%, #2d1b4e 100%);
+            background: linear-gradient(135deg, #1a3223 0%, #2d4e1b 100%);
         }
 
         .cta-section h2 {
@@ -543,9 +543,10 @@
             
             <div class="oasis-demo">
                 <div class="oasis-string" id="oasisString">
-                    business-hub-central-9999 ~ {dusk-signal-node-3452 + river-cusp-link-8419} 
+                    business-hub-central-9999 #[Signatures, and other annotations]
+                    ~ {dusk-signal-node-3452 + river-cusp-link-8419}
                     % { iron-wing-hub-2864 &lt; rain-shadow-cover-4521 _ cloud-high-cluster-4059 &gt; emerald-sky-net-2819 } 
-                    . { inbox1 & inbox2 #urgent }
+                    . { inbox1 , inbox2 }
                 </div>
                 <button class="copy-button" onclick="copyOasisString()">Copy Example ID</button>
                 
@@ -553,6 +554,10 @@
                     <div class="part identity">
                         <h4>Identity</h4>
                         <p><strong>business-hub-central-9999</strong><br>Your unique, human-readable identifier that tells others exactly who or what you are</p>
+                    </div>
+                    <div class="part signatures">
+                        <h4>Signatures & Metadata</h4>
+                        <p><strong>#[Signatures, and other annotations]</strong><br>Signature, Certificates, Cryptographic Public Key and such details for verificatio</p>
                     </div>
                     <div class="part resolver">
                         <h4>Resolver</h4>
@@ -568,12 +573,9 @@
                     </div>
                     <div class="part inbox">
                         <h4>Inboxes</h4>
-                        <p><strong>inbox1 & inbox2</strong><br>Specific delivery destinations for different types of communication</p>
+                        <p><strong>inbox1 , inbox2</strong><br>Specific delivery destinations for different types of communication</p>
                     </div>
-                    <div class="part tags">
-                        <h4>Tags & Metadata</h4>
-                        <p><strong>#urgent</strong><br>Additional context and routing hints for intelligent message handling</p>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -905,11 +907,12 @@
             
             const patterns = [
                 'business-hub-central-9999',
+                'Signatures, and other annotations'
                 'dusk-signal-node-3452',
                 'river-cusp-link-8419',
                 'iron-wing-hub-2864 &lt; rain-shadow-cover-4521 _ cloud-high-cluster-4059 &gt; emerald-sky-net-2819',
-                'inbox1 &amp; inbox2',
-                'urgent'
+                'inbox1 , inbox2',
+                
             ];
             
             parts.forEach((part, index) => {
