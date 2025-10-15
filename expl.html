@@ -559,10 +559,7 @@
             </p>
             
             <div class="oasis-demo">
-                <div class="oasis-string" id="oasisString">
-                    OASIS provides a structured, self-descriptive identity format for entities such as UAVs, assets, and networks.
-                    Each identity embeds meaning, verifiability, and connection logic in a concise and interoperable structure.
-                </div>
+               
                
 
 
@@ -575,6 +572,8 @@
                         <div class="problem-card" style="grid-column: span 5;">
                            
                             <p>
+                                OASIS provides a structured, self-descriptive identity format for entities such as UAVs, assets, and networks.
+                                Each identity embeds meaning, verifiability, and connection logic in a concise and interoperable structure.
                                 We recall our example
                             </p>
 
@@ -645,7 +644,10 @@
 
                             <p>
                                 These annotations serve as verifiable proof of authenticity and integrity, usable in both centralized and federated trust environments.
-                                OASIS doesn't natively define a format/specification for this data. Any future protocol, using OASIS specifications, would have to include such specifications by themselves.
+                                <b>
+                                    OASIS doesn't natively define a format/specification for this data. Any future protocol, using OASIS specifications, would have to include such specifications by and for themselves.
+                                </b>
+                                
                             </p>
         
                             
@@ -710,7 +712,13 @@
                             </p>
                             <p>
                                 If a primary route fails (e.g., the parent node is unreachable), fallback paths can be 
-                                explored laterally or upward in the hierarchy.
+                                explored laterally or upward in the hierarchy. This way, if a routing context starts at an unknown identifier,
+                                the client can successively query parent networks, grandparents, etc - until a discovery is made.
+
+                                <b>
+                                    The exact nature of routing, discovery, and querying is left to the protocol, that is using the OASIS scheme. 
+                                    OASIS is simply here to standardize identity allocation.
+                                </b>
                             
                                 This creates an adaptive, fault-tolerant routing model that integrates seamlessly with both IP-based and future non-IP addressing systems.
                             </p>
@@ -739,6 +747,9 @@
                                 The `{}` enclosers imply that this is a flat array.
                                 They are explicit, controlled access points; only declared inboxes are visible to external systems.
                                 This design enforces least-exposure principles while supporting rich, asynchronous communication models.
+                                <b>In fact, OASIS does not define the nature of communication through
+                                these interfaces. a protocol built on top of OASIS will have to define the nature of the communication,
+                                such as synchronicity, headers, etc.</b>
                             </p>
         
                             
@@ -762,79 +773,50 @@
     
 
     <section class="features">
-        <h2>What OASIS can do</h2>
+        <h2>Core Principles</h2>
         <div class="accent-line"></div>
         
         <div class="features-grid">
             <div class="feature-card">
-                <h3>Decentralized Architecture</h3>
+                <h3>Readable by Humans, Parsable by Machines</h3>
                 <p>
-                    The identifier functions as a singular, portable entity across heterogeneous networks. 
+                    OASIS identifiers are semantically structured and linguistically consistent, making them easy for humans to recognize, recall, and interpret.
                     <br/><br/>
-                    It is designed to be registered within a distributed system,
-                    ensuring fault tolerance by eliminating single points of failure
-                    while providing a truly decentralized resolution pathway.
+                    At the same time, the grammar is strictly defined, enabling deterministic parsing by software systems.
+                    Yet, there is considerable flexibility left for a Protoocl built on top of OASIS.
+                    This multifaceted nature reduces friction in debugging, audit, and integration processes, bridging the gap between semantic meaning and machine efficiency..
                 </p>
             </div>
             
             <div class="feature-card">
-                <h3>Human-Readable Design</h3>
+                <h3>Self-Contained, Requiring No Central Registry</h3>
                 <p>
-                    The OASIS address is a structured, semantically significant syntax. 
+                    An OASIS identity carries all essential information within itself — including resolvers, routing logic, and credentials.
                     <br><br>
-                    Each component is human-readable, and exponentially better recallable than
-                    arbitrary alpha-numeric strings or similar cryptic formats, al while
-                    permitting semantic information to be directly embedded in the identifier itself.
+                    This eliminates dependence on centralized naming services or registries.
+Discovery, verification, and routing are inherently distributed: a node can be identified, verified, and reached solely through the identifiers of its known resolvers and peers.
+The system functions autonomously in disconnected or edge-network environments, while still interoperating with federated directories if present.
                 </p>
             </div>
             
             <div class="feature-card">
-                <h3>Universal Addressing</h3>
+                <h3>Extensible, Capable of Evolving into Future Protocols</h3>
                 <p>
-                    OASIS is a universal addressing schema for a wide spectrum of entity classes. 
+                    The structural syntax is version-agnostic and future-compatible.
                     <br><br>
-                    It encompasses physical assets, digital systems, and abstract constructs, 
-                    thereby establishing a unified framework for 
-                    interoperability within complex, interconnected ecosystems.
+                    New operators or sections can be appended without breaking existing definitions.
+Identifiers can extend to represent new protocols (e.g., HTTP/6, mesh-native, or quantum routing) while maintaining backward compatibility.
+This ensures that OASIS can grow with the underlying communication models — from today’s IP-based infrastructure to future decentralized and post-IP networks.
                 </p>
             </div>
             
-            <div class="feature-card">
-                <h3>Trust-Weighted Communication</h3>
-                <p>
-                    The system incorporates intrinsic mechanisms for identity validation and reputational assessment. 
-                    <br><br>
-                    This capability provides verifiable assurance of an entity's authenticity 
-                    & generates objective trust metrics to quantify the required confidence level in communication and data exchange.
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <h3>Intelligent Routing</h3>
-                <p>
-                    Message traversal is governed by intelligently designed routing. 
-                    <br><br>
-                    The system employs architectural redundancy and automatic failover mechanisms, 
-                    striving for auditable delivery even after primary route degradation or failure.
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <h3>Future-Proof Protocol</h3>
-                <p>
-                    The scheme is designed to remain useful beyond conventional application-layer standards (e.g., HTTP). 
-                    <br><br>
-                    Its long-term roadmap targets deployment within future non-IP peer-to-peer protocols, 
-                    ensuring architectural readiness for integration with next-generation network infrastructure.
-                </p>
-            </div>
         </div>
 
         <div class="container-prob" style="padding-bottom: 60px;">
             <div class="problem-grid">
                 
                 <div class="problem-card" style="grid-column: span 3; background:unset; border-left-color:#dba80d; ">
-                    <button class="cta-button" onclick="window.location.href='solutions.html';" style="background:#1c5702; ">Read More: Engineering behind Oasis</button>
+                    <button class="cta-button" onclick="window.location.href='math.html';" style="background:#1c5702; ">Read More: Engineering behind Oasis</button>
                     <br><br>
                     <p style="color:#b4bbc6;">to solve various identified problems in various contexts</p>
                 </div>
