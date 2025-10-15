@@ -41,7 +41,7 @@
             justify-content: center;
             position: relative;
             background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d1b4e 100%);
-            background-image: url('BG.png');
+            background-image: url('aa.jpg');
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -536,73 +536,71 @@
     <section class="hero">
         <div class="hero-content">
             <h1>OASIS</h1>
-            <p class="subtitle">Open Autonomous Semantic Identity System</p>
+            <p class="subtitle">Inside the OASIS Framework</p>
             <p>
-                The question is not whether universal naming adds value, but whether reliable asset management is possible without it.
+                A self-contained model for readable, verifiable, and addressable digital identities.
             </p>
             
             <div class="oasis-demo">
                 <div class="oasis-string" id="oasisString">
-                    business-hub-central-9999 #[Signatures, and other annotations]
-                    ~ {dusk-signal-node-3452 + river-cusp-link-8419}
-                    % { iron-wing-hub-2864 &lt; rain-shadow-cover-4521 _ cloud-high-cluster-4059 &gt; emerald-sky-net-2819 } 
-                    . { inbox1 , inbox2 }
+                    OASIS provides a structured, self-descriptive identity format for entities such as UAVs, assets, and networks.
+                    Each identity embeds meaning, verifiability, and connection logic in a concise and interoperable structure.
                 </div>
-                <button class="copy-button" onclick="copyOasisString()">Copy Example ID</button>
+               
+
+
+
+                <div class="container-prob" style="margin-right:120px;">
+                    <h2>How OASIS Works</h2>
+                    <div class="accent-line"></div>
+                    <div class="problem-grid">
+                        <div class="problem-card" style="grid-column: span 3;">
+                            <h3>1. Identity Format</h3>
+                            <p>
+                                All identifiers, entity names, and network names follow the strict format:
+                            </p>
+
+                            <div class="oasis-string" id="oasisString">
+                                Word-Word-Word-#### 
+                            </div>
+
+                            <p>
+                                Example
+                            </p>
+
+                            <div class="oasis-string" id="oasisString">
+                                business-hub-central-9999
+                            </div>
+                                
+                            <p>
+                                Each segment is meaningful and drawn from a vocabulary with a recommended size of approximately 65,536 words, 
+                                balancing semantic clarity, collision resistance, and memorability.
+                                The numeric suffix provides an additional uniqueness layer, ensuring statistically negligible collision probability even in large-scale systems.
+                            </p>
+                        </div>
+                        
+                        <div class="problem-card-empty" style="background-image:url(p1.jpg);background-repeat:no-repeat;background-size:cover;background-position:center;grid-column: span 2;">
+                        </div>
+            
+                        <div class="problem-card-empty">
+                           
+                        </div>
+                        <div class="problem-card-empty">
+                            
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="breakdown">
-                    <div class="part identity">
-                        <h4>Identity</h4>
-                        <p><strong>business-hub-central-9999</strong><br>Your unique, human-readable identifier that tells others exactly who or what you are</p>
-                    </div>
-                    <div class="part signatures">
-                        <h4>Signatures & Metadata</h4>
-                        <p><strong>#[Signatures, and other annotations]</strong><br>Signature, Certificates, Cryptographic Public Key and such details for verificatio</p>
-                    </div>
-                    <div class="part resolver">
-                        <h4>Resolver</h4>
-                        <p><strong>dusk-signal-node-3452</strong><br>The primary server that knows your current location and routing information</p>
-                    </div>
-                    <div class="part resolver-alt">
-                        <h4>Resolver Alt</h4>
-                        <p><strong> river-cusp-link-8419</strong><br>The alternate server with the same knowledge - where the system can fall back to, if primary is not available</p>
-                    </div>
-                    <div class="part routing">
-                        <h4>Routing Path</h4>
-                        <p><strong> iron-wing-hub-2864 &lt; rain-shadow-cover-4521 _ cloud-high-cluster-4059 &gt; emerald-sky-net-2819 </strong><br>Multiple backup servers ensuring messages always reach their destination</p>
-                    </div>
-                    <div class="part inbox">
-                        <h4>Inboxes</h4>
-                        <p><strong>inbox1 , inbox2</strong><br>Specific delivery destinations for different types of communication</p>
-                    </div>
-                    
-                </div>
+
+
+                
             </div>
         </div>
     </section>
 
 
 
-    <div class="container-prob" style="margin-right:120px;">
-        <h2>Naming is Hard</h2>
-        <div class="accent-line"></div>
-        <div class="problem-grid">
-            <div class="problem-card" style="grid-column: span 3;">
-                <h3>The Ambiguity Problem</h3>
-                <p>When assets lack consistent identifiers, operations target the wrong entities. Commands execute against unintended units. Monitoring alerts cannot be correlated to specific assets. Access controls apply incorrectly. The failure is silent—no error is thrown, no exception logged—the system simply acts on the wrong target.</p>
-            </div>
-            
-            <div class="problem-card-empty" style="background-image:url(p1.jpg);background-repeat:no-repeat;background-size:cover;background-position:center;grid-column: span 2;">
-            </div>
-
-            <div class="problem-card-empty">
-               
-            </div>
-            <div class="problem-card-empty">
-                
-            </div>
-        </div>
-    </div>
+    
 
     <div class="container-prob" style="margin-left:120px;">
         <div class="problem-grid">
@@ -761,7 +759,7 @@
     <section class="cta-section">
         <h2>Ready for the Future of Identity?</h2>
         <p>OASIS represents a fundamental shift in how we think about digital addressing, routing, and trust in connected systems.</p>
-        <button class="cta-button" onclick="window.location.href='expl.html';">Learn More About Implementation</button>
+        <button class="cta-button" onclick="window.location.href='expl.html';">Learn More About Applications</button>
         <button class="cta-button" onclick="window.location.href='https://a72164da-d57f-4ff0-9ad1-003a401be880.eu-central-1.cloud.genez.io/generate-id'">Get a Random ID</button>
     </section>
 
@@ -1023,52 +1021,7 @@
 
 
     <script>
-        function copyOasisString() {
-            const text = document.getElementById('oasisString').textContent.trim();
-            navigator.clipboard.writeText(text).then(() => {
-                const button = document.querySelector('.copy-button');
-                const originalText = button.textContent;
-                button.textContent = 'Copied!';
-                button.style.background = '#48bb78';
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = '#38b2ac';
-                }, 2000);
-            });
-        }
-
-        // Interactive highlighting of OASIS string parts
-        document.addEventListener('DOMContentLoaded', function() {
-            const parts = document.querySelectorAll('.part');
-            const oasisString = document.getElementById('oasisString');
-            const originalString = oasisString.innerHTML;
-            
-            const patterns = [
-                'business-hub-central-9999',
-                'Signatures, and other annotations',
-                'dusk-signal-node-3452',
-                'river-cusp-link-8419',
-                'iron-wing-hub-2864 &lt; rain-shadow-cover-4521 _ cloud-high-cluster-4059 &gt; emerald-sky-net-2819',
-                'inbox1 , inbox2',
-                
-            ];
-            
-            parts.forEach((part, index) => {
-                part.addEventListener('mouseenter', () => {
-                    if (patterns[index]) {
-                        let highlightedString = originalString.replace(
-                            patterns[index], 
-                            `<span style="background: rgba(66, 153, 225, 0.2); padding: 2px 4px; border-radius: 4px; color: #ffffff;">${patterns[index]}</span>`
-                        );
-                        oasisString.innerHTML = highlightedString;
-                    }
-                });
-                
-                part.addEventListener('mouseleave', () => {
-                    oasisString.innerHTML = originalString;
-                });
-            });
-        });
+        
     </script>
 </body>
 </html>
