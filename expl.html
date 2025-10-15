@@ -65,7 +65,9 @@
             margin-bottom: 1rem;
             line-height:1.5rem;
             color:#4a5568;
-            margin-left:1.8rem;
+            margin-left: auto;
+            max-width: 800px;
+            margin-right: auto;
         }
 
         .hero h1 {
@@ -670,7 +672,7 @@
 
                             <p>
                                 Multiple resolvers can coexist, forming a redundancy mesh.
-                                Resolution can proceed in parallel (given by `+` symbol ) or in fallback order (given by `,`).
+                                Resolution can proceed in parallel (given by `,` symbol ) or in fallback order (given by `+`).
                                 Resolvers make the system discoverable without dependency on a single authority or global registry.
                             </p>
         
@@ -679,7 +681,7 @@
 
 
                         <div class="problem-card" style="grid-column: span 5;">
-                            <h3>3. Resolvers</h3>
+                            <h3>4. Routing Context</h3>
                             
 
                             <div class="oasis-string" id="oasisString">
@@ -711,6 +713,32 @@
                                 explored laterally or upward in the hierarchy.
                             
                                 This creates an adaptive, fault-tolerant routing model that integrates seamlessly with both IP-based and future non-IP addressing systems.
+                            </p>
+        
+                            
+                        </div>
+
+
+                        <div class="problem-card" style="grid-column: span 5;">
+                            <h3>5. Endpoints</h3>
+                            
+
+                            <div class="oasis-string" id="oasisString">
+                                . { inbox1 , inbox2 }
+                            </div>
+                                
+                            <p>
+                                Endpoints represent the externally available interfaces for interaction.
+                            </p>
+
+                           
+
+                            <p>
+                                Each 'endpoint', called inbox, may correspond to a message queue, API, or communication channel.
+                                Since inboxes may be operated parallely, a list of such inboxes is given by the `,` symbol.
+                                The `{}` enclosers imply that this is a flat array.
+                                They are explicit, controlled access points; only declared inboxes are visible to external systems.
+                                This design enforces least-exposure principles while supporting rich, asynchronous communication models.
                             </p>
         
                             
