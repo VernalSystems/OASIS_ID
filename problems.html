@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OASIS - Open Autonomous Semantic Identity System</title>
+    <style>
+        :root {
+            --deep-space-blue:   #0B1E36;
+            --tropical-green:    #022219;;
+            --terra-orange:      #FF6F3C;
+            --data-mint:         #7FFFD4;
+            --bone-white:        #EAEAEA;
+            --slate-gray:        #B4C6C0;
+            --warm-amber:        #F4C74F;
+            --silver-blue:       #A2D2FF;
+            --philippine-night:  #104b2a;
+            --transparent-blue:  rgba(11, 48, 54, 0.8);
+            --monsoon-verde:     #55f79e;
+            --highlight-yellow:  #f9cb40;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0f1419;
+            color: #e6e6e6;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            /*background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d1b4e 100%);*/
+            background-image: url('OASIS_light.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 96vw;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 700;
+            color: #005b35;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: #0c2d00;
+
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #8c4800;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .oasis-demo {
+            background: rgba(5, 5, 5, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+
+        .oasis-demo:hover {
+            background: rgba(5, 5, 5, 0.5);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .oasis-intro {
+            font-family: 'JetBrains Mono', Monaco, monospace;
+            font-size: 1.1rem;
+            color: #e8d5b7;
+            /*background: #1a1a1a;*/
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .part {
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .part:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mission { 
+            background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(229, 62, 62, 0.05));
+            border-left: 3px solid #e53e3e;
+        }
+        .vision { 
+            background: linear-gradient(135deg, rgba(17,153,35, 0.1), rgba(17,153,35, 0.05));
+            border-left: 3px solid #38b279;
+        }
+        .resolver-alt { 
+            background: linear-gradient(135deg, rgba(14,44,43,0.1), rgba(14,44,43,0.05));
+            border-left: 3px solid #38b2ac;
+        }
+        .routing { 
+            background: linear-gradient(135deg, rgba(66, 153, 225, 0.1), rgba(66, 153, 225, 0.05));
+            border-left: 3px solid #4299e1;
+        }
+        .inbox { 
+            background: linear-gradient(135deg, rgba(156, 136, 255, 0.1), rgba(156, 136, 255, 0.05));
+            border-left: 3px solid #9c88ff;
+        }
+        .signatures { 
+            background: linear-gradient(135deg, rgba(72, 187, 120, 0.1), rgba(72, 187, 120, 0.05));
+            border-left: 3px solid #48bb4e;
+        }
+
+        .part h4 {
+            color: #ffffff;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .part p {
+            color: #ffebc5;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .part strong {
+            color: #e8d5b7;
+            font-family: 'JetBrains Mono', Monaco, monospace;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .features {
+            padding: 5rem 2rem;
+            background: #0a0f16;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #ffffff;
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #b8b8b8;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #1a3223 0%, #2d4e1b 100%);
+        }
+
+        .cta-section h2 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .cta-section p {
+            color: #b8b8b8;
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #4299e1;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: #3182ce;
+            transform: translateY(-2px);
+        }
+
+        .copy-button {
+            background: #e3eaf0;
+            color: #003503;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .copy-button:hover {
+            background: #d9d6ec;
+            transform: translateY(-1px);
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 3px;
+            background: #4299e1;
+            margin: 2rem auto;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .oasis-string {
+                font-size: 0.95rem;
+                padding: 1.2rem;
+            }
+            
+            .breakdown {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .container-prob {
+            margin: 0 auto;
+            padding: 60px 60px;
+            margin-bottom:0;
+            padding-bottom:0;
+        }
+
+
+        .container-prob h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+        
+        
+        .problem-grid {
+            display: grid;
+            gap: 32px;
+            /*margin-bottom: 60px;*/
+            grid-template-columns: repeat(5, minmax(150px, 1fr));
+            position: relative;
+        }
+
+        .problem-grid::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #e0e0e0, #3b82f6, #e0e0e0);
+            transform: translateX(-50%);
+            display:none;
+        }
+        
+        .problem-card {
+            background: white;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid #667eea;
+        }
+
+        .problem-card-empty {
+            
+            /*padding: 32px;*/
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+           
+        }
+        
+        .problem-card h3 {
+            font-size: 1.25rem;
+            color: #667eea;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .problem-card p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(11, 20, 34, 1);
+            padding: 5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--data-mint), transparent);
+            opacity: 0.3;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--bone-white);
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-about {
+            font-size: 0.95rem;
+            color: rgba(234, 234, 234, 0.7);
+            margin-bottom: 1.5rem;
+            max-width: 300px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(47, 62, 70, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bone-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--terra-orange);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--bone-white);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: rgba(234, 234, 234, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--terra-orange);
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(47, 62, 70, 0.5);
+            font-size: 0.9rem;
+            color: rgba(234, 234, 234, 0.6);
+        }
+        
+        .copyright span {
+            color: var(--data-mint);
+        }
+        
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-legal a {
+            color: rgba(234, 234, 234, 0.6);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-legal a:hover {
+            color: var(--terra-orange);
+        }
+
+
+        /* Subtle grid pattern background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(135deg, rgba(242, 239, 209, 0.81) 0%, rgba(202, 194, 77, 0.8) 50%, #b77560 100%);
+                /*
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+                */
+            /*background-size: 50px 50px;*/
+            pointer-events: none;
+        
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>OASIS</h1>
+            <p class="subtitle">Open Addressable Semantic Identity System</p>
+            <p>
+                Order in Identity, Clarity in Connection 
+            </p>
+
+            <p>
+                OASIS defines a structured way for machines, UAVs, and assets to name, relate, and communicate with precision across complex, real-world systems.
+            </p>
+            
+            <div class="oasis-demo">
+                <div class="oasis-string" id="oasisString">
+                    OASIS is a new framework for machine and asset identity—built to replace opaque serial numbers and fragile network addresses with meaningful, structured identifiers.
+Each OASIS ID is a complete statement of identity, trust, and routing logic. It isn’t just a name; it’s an instruction set for how entities—whether drones, sensors, or servers—discover, connect, and communicate, even when networks are fragmented or resolvers are offline.
+                </div>
+                
+                
+                <div class="breakdown">
+                    <div class="part mission">
+                        <h4>Mission</h4>
+                        <p>
+                            To redefine identity as infrastructure—creating a system where every UAV, node, and digital asset can be identified, trusted, and routed without relying on central servers or proprietary formats.
+                            OASIS aims to make connectivity self-describing, allowing fleets, IoT ecosystems, and hybrid networks to operate seamlessly across domains, even under adverse or disconnected conditions.
+                            
+                        </p>
+                    </div>
+                    <div class="part vision">
+                        <h4>Vision</h4>
+                        <p>
+
+                            To build a world where identity, communication, and trust are natively integrated into the data layer—enabling autonomous systems to reason about who they are talking to, how to reach them, and what level of verification or fallback is available.
+                            OASIS envisions a federated internet of identities, in which every drone, gateway, and sensor speaks a common, human-readable language of connection.
+                        </p>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+     <section class="features">
+        <h2>The Idea of Open Addressable Semantic Identity System (OASIS)</h2>
+        <div class="accent-line"></div>
+
+        <p>
+                     The name OASIS encapsulates the project’s core philosophy:
+        <br><br>
+        </p>        
+        
+        <div class="features-grid">
+            <div class="feature-card">
+
+                <h3>
+                    Open
+                </h3>
+                
+                <p>
+                    The framework is transparent, extensible, and interoperable. It isn’t confined to a single ecosystem or vendor; it’s designed so anyone can define, reference, and verify identities across systems.
+                </p>
+            </div>
+
+            <div class="feature-card">
+
+                <h3>
+                    Addressable
+                </h3>
+                
+                <p>
+                    Every entity, whether a UAV, sensor, data node, or digital asset, can be precisely located and referenced within a structured namespace. This makes relationships—parent-child, sibling, network, or fallback—machine-resolvable and human-readable.    
+                </p>
+            </div>
+
+            <div class="feature-card">
+
+                <h3>
+                    Semantic
+                </h3>
+                
+                <p>
+                    Names aren’t arbitrary strings of characters. Each carries encoded meaning about function, lineage, and context. A well-formed OASIS name conveys purpose and relationship at a glance, removing ambiguity and enabling intelligent automation.
+                </p>
+            </div>
+
+            <div class="feature-card">
+
+                <h3>
+                    Identity System
+                </h3>
+                
+                <p>
+                    At its core, OASIS provides a consistent model for defining and resolving identities in distributed, real-world systems. It transforms identifiers from passive labels into active components of coordination, routing, and trust.
+                </p>
+            </div>
+            
+        </div>
+
+         <p>
+             
+             <br><br>
+             Together, these principles make OASIS not just a naming convention, but an identity fabric—a shared language through which machines and humans can understand and organize the world they operate in.
+        
+             
+         </p>
+    </section>
+
+
+    
+
+    <section class="features">
+        <h2>Why OASIS Matters</h2>
+        <div class="accent-line"></div>
+
+
+        
+        
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <p>
+                    In an increasingly interconnected world, the relationships between machines, assets, 
+                    and data streams grow more intricate by the day. UAVs, sensors, ground systems, 
+                    and digital assets no longer operate as isolated units — they form dynamic constellations 
+                    of interdependent entities. To navigate this complexity, there must exist a clear, 
+                    consistent way of referring to each part — a language that both humans and systems can trust. 
+                    OASIS provides that structure: a disciplined approach to identity, context, and routing that 
+                    turns ambiguity into order, allowing systems to cooperate without confusion or costly misinterpretation.
+                    
+                    <br/><br/>
+
+                    Beyond simple identifiers, OASIS defines a framework for understanding how entities relate — hierarchically, 
+                    laterally, and operationally. It recognises that assets evolve, interact, and sometimes fail, 
+                    yet must remain traceable within a coherent network of meaning. Whether applied to a UAV fleet, 
+                    a sensor grid, or a distributed operational platform, OASIS offers a way to preserve 
+                    integrity across motion, distance, and time — a stable lattice beneath the flux of modern systems.
+                </p>
+            </div>
+            
+            
+        </div>
+
+        
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready for the Future of Identity?</h2>
+        <p>OASIS represents a fundamental shift in how we think about digital addressing, routing, and trust in connected systems.</p>
+        <button class="cta-button" onclick="window.location.href='expl.html';">Learn More About Implementation</button>
+        <button class="cta-button" onclick="window.location.href='https://a72164da-d57f-4ff0-9ad1-003a401be880.eu-central-1.cloud.genez.io/generate-id'">Get a Random ID</button>
+    </section>
+
+
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                    
+
+
+
+                        <svg
+   width="14mm"
+   height="15mm"
+   viewBox="0 0 80 90"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   sodipodi:docname="oasis_small.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.75098906"
+     inkscape:cx="396.81004"
+     inkscape:cy="561.25984"
+     inkscape:window-width="1920"
+     inkscape:window-height="1052"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect3-7-7-6"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect4-3-6-2"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect3-7-7-7-6"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect4-3-6-5-0"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+  </defs>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g8"
+       transform="matrix(0.26458333,0,0,0.26458333,-19.324997,-54.441206)">
+      <g
+         id="g2"
+         transform="matrix(0.81480151,0,0,0.80122677,-151.20059,-459.26992)">
+        <g
+           id="g4-3-7-8"
+           transform="rotate(24.899984,-765.29022,628.23447)"
+           style="fill:#ffae02;fill-opacity:1">
+          <path
+             style="fill:#ffae02;fill-opacity:1;stroke:none;stroke-width:7.55906;stroke-opacity:1"
+             d="M 510.23622,321.25986 V 529.13388"
+             id="path2-1-4-7" />
+          <g
+             id="g3-9-5-9"
+             transform="translate(3.155424,-27.430941)"
+             style="fill:#ffae02;fill-opacity:1;stroke:#000000;stroke-width:0.0377953;stroke-dasharray:none;stroke-opacity:1">
+            <path
+               style="fill:#ffae02;fill-opacity:1;stroke:#000000;stroke-width:0.0377953;stroke-dasharray:none;stroke-opacity:1"
+               d="m 519.05512,527.43505 c 0,-1.69884 1.25985,-5.09652 3.51419,-10.50665 2.25435,-5.41014 5.50307,-12.83244 9.64942,-22.31838 4.14635,-9.48595 9.19007,-21.03493 13.86494,-30.11313 4.67486,-9.07819 8.98059,-15.6851 13.0233,-20.87843 4.04271,-5.19332 7.82217,-8.97278 12.8616,-13.38227 5.03943,-4.4095 11.33852,-9.44877 15.22208,-12.43601 3.88356,-2.98724 5.35138,-3.9223 7.24118,-4.96317 1.88979,-1.04087 4.2014,-2.18746 8.5069,-2.97976 4.30549,-0.7923 10.60458,-1.23027 14.24798,-1.16829 3.6434,0.062 4.63096,0.62391 5.2946,2.12623 0.66364,1.50231 0.90219,3.21757 1.02146,4.70515 0.11928,1.48758 0.11928,2.7474 -0.51065,4.63719 -0.62994,1.88978 -1.88976,4.40942 -3.50312,7.25817 -1.61336,2.84874 -3.58016,6.02641 -6.09987,9.17605 -2.51972,3.14964 -5.59219,6.27105 -8.38832,8.87446 -2.79613,2.60341 -5.31577,4.68868 -8.09075,6.57846 -2.77498,1.88978 -5.80514,3.58397 -9.23638,5.47925 -3.43124,1.89529 -7.26335,3.99157 -10.78765,6.26855 -3.52429,2.27699 -6.74056,4.73454 -10.23853,7.75451 -3.49797,3.01997 -7.27742,6.60216 -11.14398,10.55909 -3.86656,3.95693 -7.82003,8.28839 -10.98127,12.42868 -3.16124,4.14029 -5.49527,8.03109 -6.6623,10.60646 -1.16703,2.57537 -1.16703,3.83519 -0.91342,4.46511 0.25361,0.62992 0.76082,0.62992 1.39075,0.62992 0.62993,0 1.38254,0 2.38878,-0.93946 1.00625,-0.93946 2.26607,-2.81831 3.91001,-5.33803 1.64394,-2.51971 3.67189,-5.68013 6.19161,-8.80423 2.51971,-3.1241 5.53103,-6.21169 8.29658,-9.026 2.76556,-2.8143 5.28519,-5.35516 8.69475,-8.22081 3.40956,-2.86566 7.70881,-6.05593 11.48837,-8.57603 3.77956,-2.5201 7.03921,-4.36989 10.28828,-5.91963 3.24906,-1.54974 6.48734,-2.79934 9.31452,-3.7642 2.82717,-0.96486 5.24307,-1.64492 6.7735,-1.98496 1.53044,-0.34004 2.17534,-0.34004 2.27947,0.28989 0.10414,0.62994 -0.3325,1.88976 -1.25896,4.40948 -0.92646,2.51973 -2.34267,6.29918 -5.41406,11.41904 -3.07138,5.11985 -7.79776,11.57984 -12.32365,17.02673 -4.52589,5.44689 -9.50204,10.54773 -15.13984,14.98801 -5.63779,4.44028 -11.93687,8.21973 -17.60622,11.05512 -5.66934,2.8354 -10.70861,4.72659 -16.37796,6.61637 -5.66935,1.88978 -11.96844,3.77805 -15.74798,4.7222 -3.77954,0.94415 -5.03936,0.94415 -5.03936,-0.75468 z"
+               id="path3-4-2-20"
+               inkscape:path-effect="#path-effect3-7-7-6"
+               inkscape:original-d="m 517.79528,529.13388 c 1.25984,-3.39767 2.51968,-6.79535 3.77953,-10.19302 3.24884,-7.4226 6.49756,-14.8449 9.74635,-22.26735 5.04392,-11.54944 10.08765,-23.09842 15.13147,-34.64764 4.3059,-6.60717 8.61163,-13.21408 12.91745,-19.82113 3.7796,-3.7796 7.55906,-7.55905 11.33858,-11.33858 6.29934,-5.03947 12.59843,-10.07874 18.89764,-15.11811 1.46791,-0.93511 2.93573,-1.87017 4.40364,-2.80528 2.31168,-1.14663 4.62329,-2.29322 6.93494,-3.43983 6.29934,-0.43799 12.59843,-0.87596 18.89764,-1.31394 0.98759,0.56194 1.97515,1.12387 2.96271,1.6858 0.81682,2.37635 0.81682,4.12478 0.81682,5.87325 0,1.25987 0,2.51969 0,3.77953 -1.25987,2.51973 -2.51969,5.03937 -3.77953,7.55905 -1.96688,3.17781 -3.93368,6.35548 -5.90052,9.53323 -3.07259,3.12153 -6.14506,6.24294 -9.21759,9.36441 -2.51973,2.08535 -5.03937,4.17062 -7.55905,6.25593 -3.03028,1.69425 -6.06044,3.38844 -9.09065,5.08265 -3.83227,2.09636 -7.66438,4.19264 -11.49658,6.28896 -3.21639,2.45765 -6.43266,4.9152 -9.64899,7.3728 -3.77961,3.58234 -7.55906,7.16453 -11.33859,10.7468 -3.95359,4.33159 -7.90706,8.66305 -11.86053,12.99451 -1.99778,4.17181 -4.51742,7.95127 -7.0371,11.73079 0,1.25987 0,2.51969 0,3.77953 0.50722,0 1.01443,0 1.52165,0 0.75264,0 1.50525,0 2.25787,0 1.25987,-1.87892 2.51969,-3.75777 3.77953,-5.63665 2.02804,-3.16055 4.05599,-6.32097 6.08399,-9.48146 3.01143,-3.08771 6.02275,-6.1753 9.03412,-9.26295 2.51974,-2.54096 5.03937,-5.08182 7.55906,-7.62273 4.29943,-3.1904 8.59868,-6.38067 12.89803,-9.57101 3.25977,-1.84987 6.51942,-3.69966 9.77913,-5.54948 3.23842,-1.24965 6.4767,-2.49926 9.71505,-3.74888 2.416,-0.68009 4.8319,-1.36015 7.24784,-2.04023 0.64493,0 1.28983,0 1.93475,0 -0.43665,1.25987 -0.87329,2.51969 -1.30993,3.77953 -1.41627,3.77961 -2.83249,7.55906 -4.24874,11.33859 -4.72652,6.46018 -9.4529,12.92017 -14.17928,19.38017 -4.19916,4.55693 -9.23843,9.5962 -14.2778,14.63557 -6.29934,3.77961 -12.59842,7.55906 -18.89764,11.33859 -5.03947,1.89126 -10.07874,3.78244 -15.11811,5.67367 -6.29933,1.88834 -12.59842,3.77661 -18.89763,5.66491 -1.25987,0 -2.51969,0 -3.77953,0 z"
+               sodipodi:nodetypes="cccccccccccsccccccccccccscccccccccccccccccc" />
+          </g>
+          <path
+             style="fill:#ffae02;fill-opacity:1;stroke:#000000;stroke-width:0.0377953;stroke-dasharray:none;stroke-opacity:1"
+             d="m 494.79044,387.22368 c -0.65002,-16.41347 -0.13475,-30.26188 1.66295,-44.69349 1.7977,-14.43162 4.87763,-29.44493 7.91448,-37.65911 3.03685,-8.21419 6.03028,-9.62816 9.41679,-7.81547 3.38651,1.81268 7.16604,6.85205 10.31567,11.58409 3.14963,4.73205 5.66926,9.15659 8.49591,14.82596 2.82665,5.66936 5.96013,12.58317 8.47984,19.18982 2.5197,6.60664 4.42549,12.90572 5.69695,18.23129 1.27147,5.32557 1.90856,9.67732 2.29775,13.5126 0.38919,3.83528 0.53046,7.1539 0.57898,10.53588 0.0485,3.38198 0,7.16141 -0.38991,11.91515 -0.38991,4.75375 -1.12118,10.4815 -2.11675,15.79423 -0.99558,5.31272 -2.2554,10.2101 -4.14518,15.81401 -1.88979,5.60391 -4.40943,11.914 -6.2992,16.6801 -1.88978,4.7661 -3.1496,7.98795 -5.03938,12.48522 -1.88979,4.49726 -4.40943,10.26964 -6.56287,15.93899 -2.15345,5.66934 -3.94058,11.23532 -5.20043,15.66192 -1.25985,4.4266 -1.99235,7.71359 -2.35861,9.60335 -0.36626,1.88977 -0.36626,2.38224 -1.00758,2.63015 -0.64133,0.2479 -1.92395,0.25124 -3.07977,0.2534 -1.15581,0.002 -2.18483,0.003 -2.92939,-3.02213 -0.74455,-3.0253 -1.20464,-9.07679 -1.66473,-15.12833 -3.26164,-13.98921 -6.52328,-27.97843 -9.06175,-44.46217 -2.53847,-16.48373 -4.35376,-35.46198 -5.00377,-51.87546 z"
+             id="path4-7-5-2"
+             inkscape:path-effect="#path-effect4-3-6-2"
+             inkscape:original-d="m 493.62515,384.6589 c 0.51527,-13.84869 1.03054,-27.6971 1.54582,-41.54606 3.08012,-15.01427 6.16005,-30.02758 9.24018,-45.04191 2.99357,-1.41404 5.987,-2.82801 8.98049,-4.24201 3.77953,5.03937 7.55906,10.07874 11.33859,15.11811 2.51973,4.42472 5.03937,8.84926 7.55905,13.2739 3.13361,6.91409 6.2671,13.8279 9.40064,20.74185 1.90586,6.29934 3.81165,12.59842 5.71747,18.89764 0.63711,4.35192 1.2742,8.70367 1.9113,13.05551 0.14128,3.31872 0.28255,6.63734 0.42382,9.95596 -0.0471,3.4453 -0.0942,7.22475 -0.14127,11.00428 -0.7313,5.72798 -1.46257,11.45573 -2.19385,17.1836 -1.25987,4.89758 -2.51968,9.79496 -3.77953,14.69244 -2.51973,6.31034 -5.03937,12.62043 -7.55905,18.93065 -1.25987,3.22198 -2.51969,6.44383 -3.77953,9.66575 -2.51973,5.77261 -5.03937,11.54499 -7.55905,17.31748 -1.78721,5.5662 -3.57434,11.13218 -5.36151,16.69827 -0.73253,3.28711 -1.46503,6.5741 -2.19755,9.86115 0,0.49248 0,0.98495 0,1.47743 -1.28265,0.003 -2.56527,0.007 -3.84789,0.01 -1.02901,10e-4 -2.05803,0.002 -3.08705,0.003 -0.4601,-6.0516 -1.38027,-18.15463 -1.38027,-18.15463 0,0 -6.52328,-27.97843 -9.78492,-41.96764 -1.8153,-18.97826 -3.6306,-37.95651 -5.44589,-56.93477 z"
+             sodipodi:nodetypes="cccccccccccccccccccccccc" />
+        </g>
+        <g
+           id="g4-3-7-2-3"
+           transform="matrix(-0.99930853,-0.03718172,-0.03718172,0.99930853,978.00945,569.03821)"
+           style="fill:#ffae02;fill-opacity:1">
+          <path
+             style="fill:#ffae02;fill-opacity:1;stroke:none;stroke-width:7.55906;stroke-opacity:1"
+             d="M 510.23622,321.25986 V 529.13388"
+             id="path2-1-4-9-7" />
+          <g
+             id="g3-9-5-1-5"
+             transform="translate(3.155424,-27.430941)"
+             style="fill:#ffae02;fill-opacity:1;stroke:#000000;stroke-width:0.0377953;stroke-dasharray:none;stroke-opacity:1">
+            <path
+               style="fill:#ffae02;fill-opacity:1;stroke:#000000;stroke-width:0.0377953;stroke-dasharray:none;stroke-opacity:1"
+               d="m 519.05512,527.43505 c 0,-1.69884 1.25985,-5.09652 3.51419,-10.50665 2.25435,-5.41014 5.50307,-12.83244 9.64942,-22.31838 4.14635,-9.48595 9.19007,-21.03493 13.86494,-30.11313 4.67486,-9.07819 8.98059,-15.6851 13.0233,-20.87843 4.04271,-5.19332 7.82217,-8.97278 12.8616,-13.38227 5.03943,-4.4095 11.33852,-9.44877 15.22208,-12.43601 3.88356,-2.98724 5.35138,-3.9223 7.24118,-4.96317 1.88979,-1.04087 4.2014,-2.18746 8.5069,-2.97976 4.30549,-0.7923 10.60458,-1.23027 14.24798,-1.16829 3.6434,0.062 4.63096,0.62391 5.2946,2.12623 0.66364,1.50231 0.90219,3.21757 1.02146,4.70515 0.11928,1.48758 0.11928,2.7474 -0.51065,4.63719 -0.62994,1.88978 -1.88976,4.40942 -3.50312,7.25817 -1.61336,2.84874 -3.58016,6.02641 -6.09987,9.17605 -2.51972,3.14964 -5.59219,6.27105 -8.38832,8.87446 -2.79613,2.60341 -5.31577,4.68868 -8.09075,6.57846 -2.77498,1.88978 -5.80514,3.58397 -9.23638,5.47925 -3.43124,1.89529 -7.26335,3.99157 -10.78765,6.26855 -3.52429,2.27699 -6.74056,4.73454 -10.23853,7.75451 -3.49797,3.01997 -7.27742,6.60216 -11.14398,10.55909 -3.86656,3.95693 -7.82003,8.28839 -10.98127,12.42868 -3.16124,4.14029 -5.49527,8.03109 -6.6623,10.60646 -1.16703,2.57537 -1.16703,3.83519 -0.91342,4.46511 0.25361,0.62992 0.76082,0.62992 1.39075,0.62992 0.62993,0 1.38254,0 2.38878,-0.93946 1.00625,-0.93946 2.26607,-2.81831 3.91001,-5.33803 1.64394,-2.51971 3.67189,-5.68013 6.19161,-8.80423 2.51971,-3.1241 5.53103,-6.21169 8.29658,-9.026 2.76556,-2.8143 5.28519,-5.35516 8.69475,-8.22081 3.40956,-2.86566 7.70881,-6.05593 11.48837,-8.57603 3.77956,-2.5201 7.03921,-4.36989 10.28828,-5.91963 3.24906,-1.54974 6.48734,-2.79934 9.31452,-3.7642 2.82717,-0.96486 5.24307,-1.64492 6.7735,-1.98496 1.53044,-0.34004 2.17534,-0.34004 2.27947,0.28989 0.10414,0.62994 -0.3325,1.88976 -1.25896,4.40948 -0.92646,2.51973 -2.34267,6.29918 -5.41406,11.41904 -3.07138,5.11985 -7.79776,11.57984 -12.32365,17.02673 -4.52589,5.44689 -9.50204,10.54773 -15.13984,14.98801 -5.63779,4.44028 -11.93687,8.21973 -17.60622,11.05512 -5.66934,2.8354 -10.70861,4.72659 -16.37796,6.61637 -5.66935,1.88978 -11.96844,3.77805 -15.74798,4.7222 -3.77954,0.94415 -5.03936,0.94415 -5.03936,-0.75468 z"
+               id="path3-4-2-2-9"
+               inkscape:path-effect="#path-effect3-7-7-7-6"
+               inkscape:original-d="m 517.79528,529.13388 c 1.25984,-3.39767 2.51968,-6.79535 3.77953,-10.19302 3.24884,-7.4226 6.49756,-14.8449 9.74635,-22.26735 5.04392,-11.54944 10.08765,-23.09842 15.13147,-34.64764 4.3059,-6.60717 8.61163,-13.21408 12.91745,-19.82113 3.7796,-3.7796 7.55906,-7.55905 11.33858,-11.33858 6.29934,-5.03947 12.59843,-10.07874 18.89764,-15.11811 1.46791,-0.93511 2.93573,-1.87017 4.40364,-2.80528 2.31168,-1.14663 4.62329,-2.29322 6.93494,-3.43983 6.29934,-0.43799 12.59843,-0.87596 18.89764,-1.31394 0.98759,0.56194 1.97515,1.12387 2.96271,1.6858 0.81682,2.37635 0.81682,4.12478 0.81682,5.87325 0,1.25987 0,2.51969 0,3.77953 -1.25987,2.51973 -2.51969,5.03937 -3.77953,7.55905 -1.96688,3.17781 -3.93368,6.35548 -5.90052,9.53323 -3.07259,3.12153 -6.14506,6.24294 -9.21759,9.36441 -2.51973,2.08535 -5.03937,4.17062 -7.55905,6.25593 -3.03028,1.69425 -6.06044,3.38844 -9.09065,5.08265 -3.83227,2.09636 -7.66438,4.19264 -11.49658,6.28896 -3.21639,2.45765 -6.43266,4.9152 -9.64899,7.3728 -3.77961,3.58234 -7.55906,7.16453 -11.33859,10.7468 -3.95359,4.33159 -7.90706,8.66305 -11.86053,12.99451 -1.99778,4.17181 -4.51742,7.95127 -7.0371,11.73079 0,1.25987 0,2.51969 0,3.77953 0.50722,0 1.01443,0 1.52165,0 0.75264,0 1.50525,0 2.25787,0 1.25987,-1.87892 2.51969,-3.75777 3.77953,-5.63665 2.02804,-3.16055 4.05599,-6.32097 6.08399,-9.48146 3.01143,-3.08771 6.02275,-6.1753 9.03412,-9.26295 2.51974,-2.54096 5.03937,-5.08182 7.55906,-7.62273 4.29943,-3.1904 8.59868,-6.38067 12.89803,-9.57101 3.25977,-1.84987 6.51942,-3.69966 9.77913,-5.54948 3.23842,-1.24965 6.4767,-2.49926 9.71505,-3.74888 2.416,-0.68009 4.8319,-1.36015 7.24784,-2.04023 0.64493,0 1.28983,0 1.93475,0 -0.43665,1.25987 -0.87329,2.51969 -1.30993,3.77953 -1.41627,3.77961 -2.83249,7.55906 -4.24874,11.33859 -4.72652,6.46018 -9.4529,12.92017 -14.17928,19.38017 -4.19916,4.55693 -9.23843,9.5962 -14.2778,14.63557 -6.29934,3.77961 -12.59842,7.55906 -18.89764,11.33859 -5.03947,1.89126 -10.07874,3.78244 -15.11811,5.67367 -6.29933,1.88834 -12.59842,3.77661 -18.89763,5.66491 -1.25987,0 -2.51969,0 -3.77953,0 z"
+               sodipodi:nodetypes="cccccccccccsccccccccccccscccccccccccccccccc" />
+          </g>
+          <path
+             style="fill:#ffae02;fill-opacity:1;stroke:#000000;stroke-width:0.0377953;stroke-dasharray:none;stroke-opacity:1"
+             d="m 494.79044,387.22368 c -0.65002,-16.41347 -0.13475,-30.26188 1.66295,-44.69349 1.7977,-14.43162 4.87763,-29.44493 7.91448,-37.65911 3.03685,-8.21419 6.03028,-9.62816 9.41679,-7.81547 3.38651,1.81268 7.16604,6.85205 10.31567,11.58409 3.14963,4.73205 5.66926,9.15659 8.49591,14.82596 2.82665,5.66936 5.96013,12.58317 8.47984,19.18982 2.5197,6.60664 4.42549,12.90572 5.69695,18.23129 1.27147,5.32557 1.90856,9.67732 2.29775,13.5126 0.38919,3.83528 0.53046,7.1539 0.57898,10.53588 0.0485,3.38198 0,7.16141 -0.38991,11.91515 -0.38991,4.75375 -1.12118,10.4815 -2.11675,15.79423 -0.99558,5.31272 -2.2554,10.2101 -4.14518,15.81401 -1.88979,5.60391 -4.40943,11.914 -6.2992,16.6801 -1.88978,4.7661 -3.1496,7.98795 -5.03938,12.48522 -1.88979,4.49726 -4.40943,10.26964 -6.56287,15.93899 -2.15345,5.66934 -3.94058,11.23532 -5.20043,15.66192 -1.25985,4.4266 -1.99235,7.71359 -2.35861,9.60335 -0.36626,1.88977 -0.36626,2.38224 -1.00758,2.63015 -0.64133,0.2479 -1.92395,0.25124 -3.07977,0.2534 -1.15581,0.002 -2.18483,0.003 -2.92939,-3.02213 -0.74455,-3.0253 -1.20464,-9.07679 -1.66473,-15.12833 -3.26164,-13.98921 -6.52328,-27.97843 -9.06175,-44.46217 -2.53847,-16.48373 -4.35376,-35.46198 -5.00377,-51.87546 z"
+             id="path4-7-5-7-2"
+             inkscape:path-effect="#path-effect4-3-6-5-0"
+             inkscape:original-d="m 493.62515,384.6589 c 0.51527,-13.84869 1.03054,-27.6971 1.54582,-41.54606 3.08012,-15.01427 6.16005,-30.02758 9.24018,-45.04191 2.99357,-1.41404 5.987,-2.82801 8.98049,-4.24201 3.77953,5.03937 7.55906,10.07874 11.33859,15.11811 2.51973,4.42472 5.03937,8.84926 7.55905,13.2739 3.13361,6.91409 6.2671,13.8279 9.40064,20.74185 1.90586,6.29934 3.81165,12.59842 5.71747,18.89764 0.63711,4.35192 1.2742,8.70367 1.9113,13.05551 0.14128,3.31872 0.28255,6.63734 0.42382,9.95596 -0.0471,3.4453 -0.0942,7.22475 -0.14127,11.00428 -0.7313,5.72798 -1.46257,11.45573 -2.19385,17.1836 -1.25987,4.89758 -2.51968,9.79496 -3.77953,14.69244 -2.51973,6.31034 -5.03937,12.62043 -7.55905,18.93065 -1.25987,3.22198 -2.51969,6.44383 -3.77953,9.66575 -2.51973,5.77261 -5.03937,11.54499 -7.55905,17.31748 -1.78721,5.5662 -3.57434,11.13218 -5.36151,16.69827 -0.73253,3.28711 -1.46503,6.5741 -2.19755,9.86115 0,0.49248 0,0.98495 0,1.47743 -1.28265,0.003 -2.56527,0.007 -3.84789,0.01 -1.02901,10e-4 -2.05803,0.002 -3.08705,0.003 -0.4601,-6.0516 -1.38027,-18.15463 -1.38027,-18.15463 0,0 -6.52328,-27.97843 -9.78492,-41.96764 -1.8153,-18.97826 -3.6306,-37.95651 -5.44589,-56.93477 z"
+             sodipodi:nodetypes="cccccccccccccccccccccccc" />
+        </g>
+      </g>
+      <path
+         style="fill:#00c973;fill-opacity:1;stroke:#05e46b;stroke-width:11.3386;stroke-dasharray:none;stroke-opacity:1"
+         d="M 94.48819,453.54333 H 264.56694"
+         id="path6" />
+      <path
+         style="fill:#00c973;fill-opacity:1;stroke:#05e42e;stroke-width:11.3386;stroke-dasharray:none;stroke-opacity:1"
+         d="M 198.42519,472.44097 H 368.50394"
+         id="path6-3" />
+      <path
+         style="fill:#00c973;fill-opacity:1;stroke:#05e4a4;stroke-width:11.3386;stroke-dasharray:none;stroke-opacity:1"
+         d="M 132.28347,491.33861 H 302.36222"
+         id="path6-31" />
+      <path
+         style="fill:#00c973;fill-opacity:1;stroke:#055fe4;stroke-width:11.3386;stroke-dasharray:none;stroke-opacity:1"
+         d="M 179.52756,510.23624 H 349.60631"
+         id="path6-4" />
+      <path
+         style="fill:#00c973;fill-opacity:1;stroke:#05c3e4;stroke-width:11.3386;stroke-dasharray:none;stroke-opacity:1"
+         d="M 85.039367,529.13388 H 255.11812"
+         id="path6-1" />
+    </g>
+  </g>
+</svg>
+                        
+
+
+                        
+                    
+                              &nbsp;&nbsp;&nbsp;&nbsp; OASIS-ID
+                    </a>
+                    <p class="footer-about">A revolutionary approach to digital identity that's human-readable, decentralized, and built for the future of connected systems.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.477 2 2 6.484 2 12.017C2 16.5 4.865 20.306 8.84 21.5C9.34 21.58 9.52 21.27 9.52 21C9.52 20.77 9.515 20.14 9.51 19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26C14.5 19.6 14.5 20.68 14.5 21C14.5 21.27 14.67 21.59 15.19 21.5C19.14 20.3 22 16.5 22 12.017C22 6.484 17.522 2 12 2Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.46 6C21.69 6.35 20.86 6.58 20 6.69C20.88 6.16 21.56 5.32 21.88 4.31C21.05 4.81 20.13 5.16 19.16 5.36C18.37 4.5 17.26 4 16 4C13.65 4 11.73 5.92 11.73 8.29C11.73 8.63 11.77 8.96 11.84 9.27C8.28 9.09 5.11 7.38 3 4.79C2.63 5.42 2.42 6.16 2.42 6.94C2.42 8.43 3.17 9.75 4.33 10.5C3.62 10.5 2.96 10.3 2.38 10V10.03C2.38 12.11 3.86 13.85 5.82 14.24C5.46 14.34 5.08 14.39 4.69 14.39C4.42 14.39 4.15 14.36 3.89 14.31C4.43 16 6 17.26 7.89 17.29C6.43 18.45 4.58 19.13 2.56 19.13C2.22 19.13 1.88 19.11 1.54 19.07C3.44 20.29 5.7 21 8.12 21C16 21 20.33 14.46 20.33 8.79C20.33 8.6 20.33 8.42 20.32 8.23C21.16 7.63 21.88 6.87 22.46 6Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM8.5 18.5H5.5V8.5H8.5V18.5ZM7 7.5C6.17 7.5 5.5 6.83 5.5 6C5.5 5.17 6.17 4.5 7 4.5C7.83 4.5 8.5 5.17 8.5 6C8.5 6.83 7.83 7.5 7 7.5ZM18.5 18.5H15.5V13.9C15.5 12.7 14.5 11.8 13.3 11.8C12.1 11.8 11.1 12.7 11.1 13.9V18.5H8.5V8.5H11.1V9.8C11.6 9.3 12.5 8.5 13.3 8.5C16.1 8.5 18.5 10.9 18.5 13.7V18.5Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="about.html">About OASIS</a></li>
+                        <li><a href="expl.html">How It Works</a></li>
+                        <li><a href="problems.html">Applications</a></li>
+                        <li><a href="solutions.html">Mathematics</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="gets.html">Getting Started</a></li>
+                        <li><a href="downloads.html">Downloads</a></li>
+                        <li><a href="techpapers.html">Technical Papers</a></li>
+                        <li><a href="casestudies.html">Case Studies</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="cmnt.html">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">info [at] monsoonresearch [dot] cc</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="press.html">Press Inquiries</a></li>
+                        <li><a href="partner.html">Partnerships</a></li>
+                        <li><a href="career.html">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2025 <span>Vernal Systems / Monsoon Researches</span> / OASIS-ID. All rights reserved.
+                </div>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="tos.html">Terms of Service</a>
+                    <a href="license.html">License</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        /*
+        function copyOasisString() {
+            const text = document.getElementById('oasisString').textContent.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                const button = document.querySelector('.copy-button');
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = '#48bb78';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#38b2ac';
+                }, 2000);
+            });
+        }
+        */
+
+        // Interactive highlighting of OASIS string parts
+        /*
+        document.addEventListener('DOMContentLoaded', function() {
+            const parts = document.querySelectorAll('.part');
+            const oasisString = document.getElementById('oasisString');
+            const originalString = oasisString.innerHTML;
+            
+            const patterns = [
+                'business-hub-central-9999',
+                'Signatures, and other annotations',
+                'dusk-signal-node-3452',
+                'river-cusp-link-8419',
+                'iron-wing-hub-2864 &lt; rain-shadow-cover-4521 _ cloud-high-cluster-4059 &gt; emerald-sky-net-2819',
+                'inbox1 , inbox2',
+                
+            ];
+            
+            parts.forEach((part, index) => {
+                part.addEventListener('mouseenter', () => {
+                    if (patterns[index]) {
+                        let highlightedString = originalString.replace(
+                            patterns[index], 
+                            `<span style="background: rgba(66, 153, 225, 0.2); padding: 2px 4px; border-radius: 4px; color: #ffffff;">${patterns[index]}</span>`
+                        );
+                        oasisString.innerHTML = highlightedString;
+                    }
+                });
+                
+                part.addEventListener('mouseleave', () => {
+                    oasisString.innerHTML = originalString;
+                });
+            });
+        });
+        */
+    </script>
+</body>
+</html>
