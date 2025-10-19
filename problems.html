@@ -729,6 +729,85 @@
         </div>
 
 
+        <br/>
+<!-- -------------------------------------------------------------------- -->
+        <br/>
+
+        <div class="features-grid">
+            <div class="feature-card">
+
+                <h2>
+                    Scale: Lexicographic Collisions & Merge Conflicts
+                </h2>
+
+                <h3>
+                    Problem Category: Scale & Lexicographic Ambiguity
+                </h3>
+                <p>
+                    At scale, naive naming risks unintended adjacency (e.g. numeric IDs that look like dates, 
+                    alphabetical overlaps) and merge conflicts when identifiers appear in shared configuration 
+                    files. As fleet size grows, search performance, conflict resolution, and validation become bottlenecks.
+                </p>
+
+                <br/>
+
+                <h3>
+                    Corpus Example
+                </h3>
+                <div class="example">
+                    In a StackOverflow (<a href="https://archive.ph/9y0pc" style="color:#44F06F;">Link Here</a>) 
+                    question on file rename conflicts during git merge:
+
+                    <p class="quote" style="color:#D5CDA6;">
+                       “Branch renaming and file renaming collide … Git cannot resolve both renames at once.”
+                    </p> 
+                    
+                    
+                    Although not about asset naming, it mirrors how ambiguous names in code/config cause conflict in version control.
+
+                    <br/><br/>
+                    
+                    Also, from Reddit on naming conventions:
+
+                    <p class="quote" style="color:#D5CDA6;">
+                       “At scale … name becomes problematic … we switched to vendor serial numbers … because human errors crept in.”
+                    </p> 
+
+                    Human-crafted names broke down as scale increased.
+                </div>
+
+                <h3>
+                    OASIS’s Mitigation
+                </h3>
+                
+
+                <p>
+                    Because OASIS enforces a single canonical grammar (Word-Word-Word-####) plus embedded resolver 
+                    and routing context, different teams cannot diverge naming arbitrarily. 
+                    Legacy systems can store the full OASIS string, so when names evolve, old references remain valid. 
+                    Uniform parsing means translation layers are minimal or unnecessary.
+                </p>
+
+                <br/>
+                
+                <h3>
+                    Application Fit
+                </h3>
+
+                <p>
+                    The fixed grammar ensures no accidental date-like parsing or lexical adjacent ambiguity;
+                    parse boundaries are unambiguous.
+                    Semantic word prefixes can group by domain, aiding indexing and sharding strategies 
+                    (e.g. all skyhawk-… grouped in one shard).
+                    Merge tools and config editors can validate OASIS patterns automatically, reducing human merge drift.
+                </p>
+
+                Environments with large UAV fleets, sensor arrays, or asset inventories benefit strongly.
+                OASIS ensures identifiers don’t collide or confuse in automated systems or version control workflows.
+            </div>
+            
+            
+        </div>
 
         
     </section>
