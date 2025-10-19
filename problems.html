@@ -521,7 +521,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: linear-gradient(135deg, rgba(242, 239, 209, 0.81) 0%, rgba(202, 194, 77, 0.8) 50%, #b77560 100%);
+            background-image: linear-gradient(135deg, rgba(242, 239, 209, 0.81) 0%, rgba(77, 202, 190, 0.79) 50%, #6760b7 100%);
                 /*
                 linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
@@ -545,107 +545,33 @@
                 Examining public incidents of naming ambiguity, fragmentation, and scale problems—and how OASIS’s structured identity system is specifically suited to resolve these in asset, UAV, and network domains.
             </p>
 
-            <!--
+            
             <div class="oasis-demo">
-                <div class="oasis-string" id="oasisString">
-                    OASIS is a new framework for machine and asset identity—built to replace opaque serial numbers and fragile network addresses with meaningful, structured identifiers.
-Each OASIS ID is a complete statement of identity, trust, and routing logic. It isn’t just a name; it’s an instruction set for how entities—whether drones, sensors, or servers—discover, connect, and communicate, even when networks are fragmented or resolvers are offline.
-                </div>
+                
                 
                 
                 <div class="breakdown">
-                    <div class="part mission">
-                        <h4>Mission</h4>
-                        <p>
-                            To redefine identity as infrastructure—creating a system where every UAV, node, and digital asset can be identified, trusted, and routed without relying on central servers or proprietary formats.
-                            OASIS aims to make connectivity self-describing, allowing fleets, IoT ecosystems, and hybrid networks to operate seamlessly across domains, even under adverse or disconnected conditions.
-                            
-                        </p>
-                    </div>
-                    <div class="part vision">
-                        <h4>Vision</h4>
-                        <p>
+                    The following section presents concrete examples drawn from real-world development 
+                    and operations contexts—cases where ambiguous or inconsistent naming led to failures 
+                    in deployment, automation, or coordination. These incidents, taken from public 
+                    repositories and technical discussions, illustrate how small inconsistencies in 
+                    identifiers can cascade into large-scale operational problems. By examining these cases, 
+                    it becomes clear why a structured, self-descriptive identity system such as OASIS offers 
+                    a more resilient foundation for managing assets, UAVs, and distributed networks: 
+                    it encodes relationships, provenance, and routing logic directly into the identifier, 
+                    turning what is often a weak link in system design into a robust organizing principle.
 
-                            To build a world where identity, communication, and trust are natively integrated into the data layer—enabling autonomous systems to reason about who they are talking to, how to reach them, and what level of verification or fallback is available.
-                            OASIS envisions a federated internet of identities, in which every drone, gateway, and sensor speaks a common, human-readable language of connection.
-                        </p>
-                    </div>
                     
                     
                 </div>
             </div>
 
-            -->
-        </div>
-    </section>
-
-
-     <section class="features">
-        <h2>The Idea of Open Addressable Semantic Identity System (OASIS)</h2>
-        <div class="accent-line"></div>
-
-        <p>
-                     The name OASIS encapsulates the project’s core philosophy:
-        <br><br>
-        </p>        
-        
-        <div class="features-grid">
-            <div class="feature-card">
-
-                <h3>
-                    Open
-                </h3>
-                
-                <p>
-                    The framework is transparent, extensible, and interoperable. It isn’t confined to a single ecosystem or vendor; it’s designed so anyone can define, reference, and verify identities across systems.
-                </p>
-            </div>
-
-            <div class="feature-card">
-
-                <h3>
-                    Addressable
-                </h3>
-                
-                <p>
-                    Every entity, whether a UAV, sensor, data node, or digital asset, can be precisely located and referenced within a structured namespace. This makes relationships—parent-child, sibling, network, or fallback—machine-resolvable and human-readable.    
-                </p>
-            </div>
-
-            <div class="feature-card">
-
-                <h3>
-                    Semantic
-                </h3>
-                
-                <p>
-                    Names aren’t arbitrary strings of characters. Each carries encoded meaning about function, lineage, and context. A well-formed OASIS name conveys purpose and relationship at a glance, removing ambiguity and enabling intelligent automation.
-                </p>
-            </div>
-
-            <div class="feature-card">
-
-                <h3>
-                    Identity System
-                </h3>
-                
-                <p>
-                    At its core, OASIS provides a consistent model for defining and resolving identities in distributed, real-world systems. It transforms identifiers from passive labels into active components of coordination, routing, and trust.
-                </p>
-            </div>
             
         </div>
-
-         <p>
-             
-             <br><br>
-             Together, these principles make OASIS not just a naming convention, but an identity fabric—a shared language through which machines and humans can understand and organize the world they operate in.
-        
-             
-         </p>
     </section>
 
 
+     
     
 
     <section class="features">
@@ -658,23 +584,32 @@ Each OASIS ID is a complete statement of identity, trust, and routing logic. It 
         
         <div class="features-grid">
             <div class="feature-card">
-                <p>
-                    In an increasingly interconnected world, the relationships between machines, assets, 
-                    and data streams grow more intricate by the day. UAVs, sensors, ground systems, 
-                    and digital assets no longer operate as isolated units — they form dynamic constellations 
-                    of interdependent entities. To navigate this complexity, there must exist a clear, 
-                    consistent way of referring to each part — a language that both humans and systems can trust. 
-                    OASIS provides that structure: a disciplined approach to identity, context, and routing that 
-                    turns ambiguity into order, allowing systems to cooperate without confusion or costly misinterpretation.
-                    
-                    <br/><br/>
 
-                    Beyond simple identifiers, OASIS defines a framework for understanding how entities relate — hierarchically, 
-                    laterally, and operationally. It recognises that assets evolve, interact, and sometimes fail, 
-                    yet must remain traceable within a coherent network of meaning. Whether applied to a UAV fleet, 
-                    a sensor grid, or a distributed operational platform, OASIS offers a way to preserve 
-                    integrity across motion, distance, and time — a stable lattice beneath the flux of modern systems.
+                <h2>
+                    Ambiguity: Device Naming Across Teams
+                </h2>
+
+                <h3>
+                    Problem Category: Ambiguity
+                </h3>
+                <p>
+                    When identifiers lack embedded context, commands and references become ambiguous. 
+                    A flat name does not carry information about ownership, role, or resolving authority. 
+                    Mistakes slip through silently: the system may talk to the wrong device or log to 
+                    the wrong stream without any visible error.
                 </p>
+                <div>
+                    From a Reddit thread on sysadmin naming conventions:
+
+                    <p>
+                       “All the servers were named after various flowers. … having to reference a spreadsheet constantly.”
+                        <br/><br/>
+                        “It is confusing for our team too.” 
+                    </p> 
+                    Reddit
+                    
+                    In that environment, an operator might issue a reboot to orchid-server, but which orchid?
+                </div>
             </div>
             
             
