@@ -530,6 +530,16 @@
             pointer-events: none;
         
         }
+
+        .example {
+            margin: 2rem;
+            margin-left: 4rem;
+        }
+
+        .quote {
+            margin: 2rem;
+            color: #D5CDA6;
+        }
     </style>
 </head>
 <body>
@@ -550,7 +560,7 @@
                 
                 
                 
-                <div class="breakdown">
+                <div class="breakdown" style="margin-top:unset;text-align:justify">
                     The following section presents concrete examples drawn from real-world development 
                     and operations contexts—cases where ambiguous or inconsistent naming led to failures 
                     in deployment, automation, or coordination. These incidents, taken from public 
@@ -575,7 +585,7 @@
     
 
     <section class="features">
-        <h2>Why OASIS Matters</h2>
+        <h2>Some Examples from the wild </h2>
         <div class="accent-line"></div>
 
 
@@ -598,18 +608,39 @@
                     Mistakes slip through silently: the system may talk to the wrong device or log to 
                     the wrong stream without any visible error.
                 </p>
-                <div>
-                    From a Reddit thread on sysadmin naming conventions:
 
-                    <p>
+                <h3>
+                    Corpus Example
+                </h3>
+                <div class="example">
+                    From a Reddit (<a href="https://archive.ph/Cg8si" style="color:#44F06F;"></a>) thread on sysadmin naming conventions:
+
+                    <p class="quote">
                        “All the servers were named after various flowers. … having to reference a spreadsheet constantly.”
-                        <br/><br/>
+                        <br/>
                         “It is confusing for our team too.” 
                     </p> 
-                    Reddit
+                    
                     
                     In that environment, an operator might issue a reboot to orchid-server, but which orchid?
                 </div>
+
+                <h3>
+                    OASIS’s Mitigation
+                </h3>
+                <p>
+                    With OASIS, the full identity would include the structured context:
+                </p>
+
+                <div class="oasis-string">
+                    orchid-server-1923 ~ dusk-node-xxxx + fallback-node … .inbox 
+                </div>
+
+                <p>
+                    Because the resolver and routing context are embedded, 
+                    tools and control logic can verify exactly which physical device is intended before executing commands. 
+                    Ambiguous calls cannot succeed silently; context is part of the name.
+                </p>
             </div>
             
             
