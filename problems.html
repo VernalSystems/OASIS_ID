@@ -609,11 +609,13 @@
                     the wrong stream without any visible error.
                 </p>
 
+                <br/>
+
                 <h3>
                     Corpus Example
                 </h3>
                 <div class="example">
-                    From a Reddit (<a href="https://archive.ph/Cg8si" style="color:#44F06F;"></a>) thread on sysadmin naming conventions:
+                    From a Reddit (<a href="https://archive.ph/Cg8si" style="color:#44F06F;">Link Here</a>) thread on sysadmin naming conventions:
 
                     <p class="quote">
                        “All the servers were named after various flowers. … having to reference a spreadsheet constantly.”
@@ -641,10 +643,91 @@
                     tools and control logic can verify exactly which physical device is intended before executing commands. 
                     Ambiguous calls cannot succeed silently; context is part of the name.
                 </p>
+
+                <br/>
+                
+                <h3>
+                    Application Fit
+                </h3>
+
+                <p>
+                    Any domain where devices or UAVs are controlled remotely 
+                    (e.g. drone fleets, industrial sensors) benefits from disambiguated commands. 
+                    OASIS is ideal for systems where mis-targeted operations are costly or dangerous.
+                </p>
             </div>
             
             
         </div>
+
+<!-- -------------------------------------------------------------------- -->
+
+
+        <div class="features-grid">
+            <div class="feature-card">
+
+                <h2>
+                    Fragmentation: Multiple Naming Schemes Over Time
+                </h2>
+
+                <h3>
+                    Problem Category: Fragmentation
+                </h3>
+                <p>
+                    As systems evolve, various teams adopt their own naming rules. 
+                    Over time, legacy names, ad hoc prefixes, and aliases proliferate. 
+                    Bridges must be built between naming schemes—creating brittle mappings, 
+                    conversion logic, and risk of inconsistencies.
+                </p>
+
+                <br/>
+
+                <h3>
+                    Corpus Example
+                </h3>
+                <div class="example">
+                    In another Reddit (<a href="https://archive.ph/Cg8si" style="color:#44F06F;">Link Here</a>) thread 
+                    on home automation device naming:
+
+                    <p class="quote">
+                       “I have a lot of lights, switches, sensors… Right now, I didn't find a good way of naming devices
+                        … a mix of french and english words.”
+                        <br/>
+                        “I have devices with the same name ‘Ender’ in different contexts.” 
+                    </p> 
+                    
+                    
+                    That situation forced custom per-site naming heuristics and inconsistent cross-system references.
+                </div>
+
+                <h3>
+                    OASIS’s Mitigation
+                </h3>
+                
+
+                <p>
+                    Because OASIS enforces a single canonical grammar (Word-Word-Word-####) plus embedded resolver 
+                    and routing context, different teams cannot diverge naming arbitrarily. 
+                    Legacy systems can store the full OASIS string, so when names evolve, old references remain valid. 
+                    Uniform parsing means translation layers are minimal or unnecessary.
+                </p>
+
+                <br/>
+                
+                <h3>
+                    Application Fit
+                </h3>
+
+                <p>
+                    Large organizations with many UAVs, sensors, or assets over years often face naming drift. 
+                    OASIS helps maintain coherence and reduces the maintenance overhead of mapping layers between subsystems.
+                </p>
+            </div>
+            
+            
+        </div>
+
+
 
         
     </section>
