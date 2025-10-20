@@ -734,6 +734,34 @@
 
 
 
+                        <!-- ------------------------------------------------------------------ -->
+
+
+                        <div class="problem-card-right" style="grid-column: span 5;">
+                            <h3>Network overhead</h3>
+                            <p>
+                                OASIS textual ID has approximate size of 25 bytes, which is safe for all filesystems (NTFS, ext4, etc.).
+                                With packed binary representation we can achieve 3×16-bit indices + 1×16-bit suffix 
+                                = 8 bytes (aligned), which is extremely compact for DB keys.
+                                <br/><br/>
+                                OASIS exposes natural shard keys (first word → up to 65,536 shards). 
+                                Realistic shard design would contain 256–4096 buckets (hash first word or first two bytes), 
+                                avoiding problems of extreme directory fanout that some filesystems dislike.
+                            </p>
+
+                            
+                            <br/><br/>
+
+                            <h3>Interpretation</h3>
+                            <p style="color:#101010;">
+                                Storing OASIS as packed 8-byte keys gives storage parity with 64-bit numeric but preserves 
+                                human-readable form for logs/UI in parallel. OASIS textual representation is not problematic 
+                                for filesystem limits and benefits from easy sharding.
+                            </p>
+                        </div>
+
+
+
                         
                        
                     </div>
@@ -744,57 +772,6 @@
 
     
 
-    <section class="features">
-        <h2>Core Principles</h2>
-        <div class="accent-line"></div>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3>Readable by Humans, Parsable by Machines</h3>
-                <p>
-                    OASIS identifiers are semantically structured and linguistically consistent, making them easy for humans to recognize, recall, and interpret.
-                    <br/><br/>
-                    At the same time, the grammar is strictly defined, enabling deterministic parsing by software systems.
-                    Yet, there is considerable flexibility left for a Protoocl built on top of OASIS.
-                    This multifaceted nature reduces friction in debugging, audit, and integration processes, bridging the gap between semantic meaning and machine efficiency..
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <h3>Self-Contained, Requiring No Central Registry</h3>
-                <p>
-                    An OASIS identity carries all essential information within itself — including resolvers, routing logic, and credentials.
-                    <br><br>
-                    This eliminates dependence on centralized naming services or registries.
-Discovery, verification, and routing are inherently distributed: a node can be identified, verified, and reached solely through the identifiers of its known resolvers and peers.
-The system functions autonomously in disconnected or edge-network environments, while still interoperating with federated directories if present.
-                </p>
-            </div>
-            
-            <div class="feature-card">
-                <h3>Extensible, Capable of Evolving into Future Protocols</h3>
-                <p>
-                    The structural syntax is version-agnostic and future-compatible.
-                    <br><br>
-                    New operators or sections can be appended without breaking existing definitions.
-Identifiers can extend to represent new protocols (e.g., HTTP/6, mesh-native, or quantum routing) while maintaining backward compatibility.
-This ensures that OASIS can grow with the underlying communication models — from today’s IP-based infrastructure to future decentralized and post-IP networks.
-                </p>
-            </div>
-            
-        </div>
-
-        <div class="container-prob" style="padding-bottom: 60px;">
-            <div class="problem-grid">
-                
-                <div class="problem-card" style="grid-column: span 3; background:unset; border-left-color:#dba80d; ">
-                    <button class="cta-button" onclick="window.location.href='solutions.html';" style="background:#1c5702; ">Read More: Engineering behind Oasis</button>
-                    <br><br>
-                    <p style="color:#b4bbc6;">to solve various identified problems in various contexts</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section class="cta-section">
         <h2>Ready for the Future of Identity?</h2>
