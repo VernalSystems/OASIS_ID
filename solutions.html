@@ -539,7 +539,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: linear-gradient(135deg, rgba(40,150,150,0.5) 0%, rgba(30, 83, 38, 0.85) 30%, rgba(30, 83, 38, 0.85) 70%, #2d1b4ead 100%)
+            background-image: linear-gradient(135deg, rgba(40,150,150,0.5) 0%, rgba(30, 83, 38, 0.85) 30%, rgba(30, 83, 38, 0.85) 70%, #2d1b4ead 100%);
                 /*
                 linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
@@ -564,15 +564,9 @@
                
                
                 <div class="breakdown" style="margin-top:unset;text-align:justify">
-                    The following section presents concrete examples drawn from real-world development 
-                    and operations contexts—cases where ambiguous or inconsistent naming led to failures 
-                    in deployment, automation, or coordination. These incidents, taken from public 
-                    repositories and technical discussions, illustrate how small inconsistencies in 
-                    identifiers can cascade into large-scale operational problems. By examining these cases, 
-                    it becomes clear why a structured, self-descriptive identity system such as OASIS offers 
-                    a more resilient foundation for managing assets, UAVs, and distributed networks: 
-                    it encodes relationships, provenance, and routing logic directly into the identifier, 
-                    turning what is often a weak link in system design into a robust organizing principle.
+                    In large distributed systems, identifiers are not just labels—they form a measurable part of storage, 
+                    transmission, and indexing cost. While UUIDs and arbitrary naming schemes appear compact, 
+                    their entropy is unstructured and therefore resists compression. OASIS, by contrast, builds meaning into structure.
 
                     
                     
@@ -590,52 +584,41 @@
     
 
                 <div class="container-prob" >
-                    <h2>How OASIS Works</h2>
+                    <h2>OASIS: Performance</h2>
                     <div class="accent-line"></div>
                     <div class="problem-grid">
 
-                        <div class="problem-card" style="grid-column: span 5;">
-                           
-                            <p>
-                                OASIS provides a structured, self-descriptive identity format for entities such as UAVs, assets, and networks.
-                                Each identity embeds meaning, verifiability, and connection logic in a concise and interoperable structure.
-                                We recall our example
-                            </p>
-
-                            <div class="oasis-string" id="oasisString">
-                                business-hub-central-9999 <br>
-                                # [Signatures, and other annotations] <br>
-                                ~ {dusk-signal-node-3452 + river-cusp-link-8419} <br>
-                                % { iron-wing-hub-2864 &lt; rain-shadow-cover-4521 _ cloud-high-cluster-4059 &gt; emerald-sky-net-2819 } <br>
-                                . { inbox1 , inbox2 } <br>
-                            </div>
-
-                            
-                        </div>
+                        
 
                         
                         <div class="problem-card" style="grid-column: span 5;">
-                            <h3>1. Identity Format</h3>
+                            <h3>Collision probability (uniqueness)</h3>
                             <p>
-                                All identifiers, entity names, and network names follow the strict format:
+                                A typical OASIS implementation given by `WORD-WORD-WORD-Number` scheme is built from a vocabulary of 65536 words. 
+                                The number can vary between 0000 and 9999 - leading to a space of 65536³ × 10000 items, which is approx.
+                                2.81 × 10¹⁸ items.
+                                <br/><br/>
+                                Therefore, entropy E ≈ log2(V) ≈ 61.29 bits.
                             </p>
 
-                            <div class="oasis-string" id="oasisString">
-                                Word-Word-Word-#### 
-                            </div>
-
-                            <p>
-                                Example
-                            </p>
-
-                            <div class="oasis-string" id="oasisString">
-                                business-hub-central-9999
-                            </div>
+                            <br/><br/>
                                 
                             <p>
-                                Each segment is meaningful and drawn from a vocabulary with a recommended size of approximately 65,536 words, 
-                                balancing semantic clarity, collision resistance, and memorability.
-                                The numeric suffix provides an additional uniqueness layer, ensuring statistically negligible collision probability even in large-scale systems.
+                                It can be easily calculated, using birthday approximation, that the collision probability is 
+                                1.8 × 10⁻⁷ with 1,000,000 items, which changes to 1.8 × 10⁻³ with
+                                100,000,000 items.
+
+                            </p>
+                             <br/><br/>
+
+                            <h3>Interpretation</h3>
+                            <p style="color:#101010;">
+                                OASIS (61 bits) is practically collision-free for fleets up to several million. 
+                                For extreme global scale (hundreds of millions or billions) collisions become measurable and 
+                                UUID or extra entropy becomes prudent. A possible solution is mentioned in 
+                                <a style="color: #44F06F;">documents.</a>
+                                64-bit numeric ID, in terms of entropy is close to OASIS.
+                                In contrast, UUID is orders of magnitude stronger but carries no semantics.
                             </p>
                         </div>
 
