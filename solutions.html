@@ -663,7 +663,7 @@
                             <br/><br/>
                                 
 
-                            <ol>
+                            <ol style="color: #4a5568;">
                                 <li>
                                     OASIS textual (single ID) has an approx size of 25 bytes (assume avg word = 6 chars → 6+1+6+1+6+1+4 ≈ 25). 
                                     Gzip on a single 25-byte string gives little gain, i.e. final output remains 25 bytes.
@@ -701,6 +701,34 @@
                                 <br/><br/>
                                 Because UUID text is uniformly random, LZ77 finds few repeated substrings; 
                                 corpus compression remains ≈ 0.99 across all scales.
+                            </p>
+                        </div>
+
+
+
+                        <!-- ------------------------------------------------------------------ -->
+
+
+                        <div class="problem-card-left" style="grid-column: span 5;">
+                            <h3>Filesystem and storage performance</h3>
+                            <p>
+                                OASIS textual ID has approximate size of 25 bytes, which is safe for all filesystems (NTFS, ext4, etc.).
+                                With packed binary representation we can achieve 3×16-bit indices + 1×16-bit suffix 
+                                = 8 bytes (aligned), which is extremely compact for DB keys.
+                                <br/><br/>
+                                OASIS exposes natural shard keys (first word → up to 65,536 shards). 
+                                Realistic shard design would contain 256–4096 buckets (hash first word or first two bytes), 
+                                avoiding problems of extreme directory fanout that some filesystems dislike.
+                            </p>
+
+                            
+                            <br/><br/>
+
+                            <h3>Interpretation</h3>
+                            <p style="color:#101010;">
+                                Storing OASIS as packed 8-byte keys gives storage parity with 64-bit numeric but preserves 
+                                human-readable form for logs/UI in parallel. OASIS textual representation is not problematic 
+                                for filesystem limits and benefits from easy sharding.
                             </p>
                         </div>
 
