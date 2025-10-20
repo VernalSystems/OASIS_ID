@@ -376,12 +376,20 @@
             display:none;
         }
         
-        .problem-card {
+        .problem-card-left {
             background: white;
             padding: 32px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             border-left: 4px solid #667eea;
+        }
+
+        .problem-card-right {
+            background: white;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-right: 4px solid #667eea;
         }
 
         .problem-card-empty {
@@ -591,7 +599,7 @@
                         
 
                         
-                        <div class="problem-card" style="grid-column: span 5;">
+                        <div class="problem-card-left" style="grid-column: span 5;">
                             <h3>Collision probability (uniqueness)</h3>
                             <p>
                                 A typical OASIS implementation given by `WORD-WORD-WORD-Number` scheme is built from a vocabulary of 65536 words. 
@@ -609,57 +617,90 @@
                                 100,000,000 items.
 
                             </p>
-                             <br/><br/>
+                            <br/><br/>
 
                             <h3>Interpretation</h3>
                             <p style="color:#101010;">
                                 OASIS (61 bits) is practically collision-free for fleets up to several million. 
                                 For extreme global scale (hundreds of millions or billions) collisions become measurable and 
                                 UUID or extra entropy becomes prudent. A possible solution is mentioned in 
-                                <a style="color: #44F06F;">documents.</a>
+                                <a style="color: #009709;">documents.</a>
                                 64-bit numeric ID, in terms of entropy is close to OASIS.
                                 In contrast, UUID is orders of magnitude stronger but carries no semantics.
                             </p>
                         </div>
 
-                        <div class="problem-card" style="grid-column: span 5;">
-                            <h3>2. Credentials and Proof</h3>
-                            
 
-                            <div class="oasis-string" id="oasisString">
-                                # [Signatures, and other annotations]
-                            </div>
-                                
+
+                        <!-- ------------------------------------------------------------------ -->
+
+
+                        <div class="problem-card-right" style="grid-column: span 5;">
+                            <h3>Compression efficiency (gzip/deflate-style)</h3>
                             <p>
-                                This section encodes public credentials associated with the entity.
-                                The square brackets imply a hierarchical object — not a flat list. Credentials may include:
+                                Compression effectiveness depends on redundancy and repetition patterns across a corpus. 
+                                Random strings (UUIDs) compress poorly. Textual names built from a limited, 
+                                repeating vocabulary compress better - especially when many IDs share common words or prefixes.
+                                <br/><br/>
+                                Two scenarios are shown: (A) single, isolated ID (no context) and (B) 
+                                large corpus (millions) where dictionary repeats are exploited.
                             </p>
+
+                            <br/><br/>
+                                
 
                             <ol>
                                 <li>
-                                    Cryptographic signatures or certificate chains
+                                    OASIS textual (single ID) has an approx size of 25 bytes (assume avg word = 6 chars → 6+1+6+1+6+1+4 ≈ 25). 
+                                    Gzip on a single 25-byte string gives little gain, i.e. final output remains 25 bytes.
                                 </li>
                                 <li>
-                                    Timestamped attestations or hashes
+                                    OASIS corpus (many IDs, e.g. a log) likely will contain repeated vocabulary, and common separators.
+                                    This leads to a compress ratio of 0.45–0.75. 
+                                    Example: 1,000 IDs on an avergae will correspond to 25 kB, which, once compressed
+                                    will have a size of 11 – 15 kB, a compress ratio between 0.45 - 0.60. 
+                                    With increasing corpus size, the compress ratio will improve.
                                 </li>
                                 <li>
-                                    Role or authority markers
+                                    UUID (36 chars) is mostly random hex characters - therefore
+                                    expected compressibility is very little, ~0.95–1.0 (very little).
+                                    Similarly, 64-bit numeric (text) compresses little unless many IDs share prefixes, 
+                                    whereas binary 8 bytes remains 8 bytes.
                                 </li>
                                 <li>
-                                    Extended metadata for verification or lineage tracking
+                                    Wild freeform names (40 chars avg): compression is highly variable. 
+                                    If they use common tokens across items, can compress well (~0.4–0.7),
+                                    if however they are highly variable free text, they'd compress poorly.
                                 </li>
                             </ol>
-
-                            <p>
-                                These annotations serve as verifiable proof of authenticity and integrity, usable in both centralized and federated trust environments.
-                                <b>
-                                    OASIS doesn't natively define a format/specification for this data. Any future protocol, using OASIS specifications, would have to include such specifications by and for themselves.
-                                </b>
-                                
-                            </p>
-        
                             
+                            <br/><br/>
+
+                            <h3>Interpretation</h3>
+                            <p style="color:#101010;">
+                                For a telemetry batch of 10 000 assets, each with an OASIS ID, a Raw file size is ~ 250 kB.
+                                Compressed, on an average is 130 kB (saves ≈ 120 kB per batch vs UUIDs).
+                                For large datasets (millions of IDs), that saving compounds into tens of megabytes.
+                                <br/><br/>
+                                At small scale (10 IDs), gzip doesn’t fully amortize the dictionary; the ratio can be up to ~0.75.
+                                By 1 000 – 10 000 IDs, OASIS routinely compresses to 45–60 % of raw size.
+                                <br/><br/>
+                                Because UUID text is uniformly random, LZ77 finds few repeated substrings; 
+                                corpus compression remains ≈ 0.99 across all scales.
+                            </p>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+                        
 
 
                         <div class="problem-card" style="grid-column: span 5;">
