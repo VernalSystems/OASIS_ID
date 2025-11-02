@@ -360,7 +360,7 @@
             display: grid;
             gap: 32px;
             /*margin-bottom: 60px;*/
-            grid-template-columns: repeat(5, minmax(150px, 1fr));
+            grid-template-columns: repeat(2, minmax(150px, 1fr));
             position: relative;
         }
 
@@ -615,7 +615,7 @@
                         
 
                         
-                        <div class="problem-card-left" style="grid-column: span 5;">
+                        <div class="problem-card-left" style="">
                             <h3>Collect the Names</h3>
                             <p>
                                 To begin using OASIS, the first step is to build your vocabulary for identifier generation. 
@@ -634,7 +634,7 @@
                         <!-- ------------------------------------------------------------------ -->
 
 
-                        <div class="problem-card-right" style="grid-column: span 5;">
+                        <div class="problem-card-right" style="">
                             <h3>Define Namespaces (Optional)</h3>
                             <p>
                                 
@@ -652,27 +652,16 @@
                         <!-- ------------------------------------------------------------------ -->
 
 
-                        <div class="problem-card-left" style="grid-column: span 5;">
-                            <h3>Filesystem and storage performance</h3>
+                        <div class="problem-card-left" style="">
+                            <h3>Explore the Documentation</h3>
                             <p>
-                                OASIS textual ID has approximate size of 25 bytes, which is safe for all filesystems (NTFS, ext4, etc.).
-                                With packed binary representation we can achieve 3×16-bit indices + 1×16-bit suffix 
-                                = 8 bytes (aligned), which is extremely compact for DB keys.
-                                <br/><br/>
-                                OASIS exposes natural shard keys (first word → up to 65,536 shards). 
-                                Realistic shard design would contain 256–4096 buckets (hash first word or first two bytes), 
-                                avoiding problems of extreme directory fanout that some filesystems dislike.
+                                Once your are ready, take time to understand how OASIS resolution and communication work. 
+                                Read the <a href="https://github.com/VernalSystems/OASIS_ID/wiki">documentation</a> to learn about link resolution methods 
+                                (~, %, &lt;, _, &gt;), how tags and signatures operate, and how inboxes and routes define communication endpoints. 
+                                You may or may not - depending on your sue case - need all these things.
                             </p>
 
                             
-                            <br/><br/>
-
-                            <h3>Interpretation</h3>
-                            <p style="color:#101010;">
-                                Storing OASIS as packed 8-byte keys gives storage parity with 64-bit numeric but preserves 
-                                human-readable form for logs/UI in parallel. OASIS textual representation is not problematic 
-                                for filesystem limits and benefits from easy sharding.
-                            </p>
                         </div>
 
 
@@ -681,59 +670,17 @@
 
 
                         <div class="problem-card-right" style="grid-column: span 5;">
-                            <h3>Network overhead</h3>
+                            <h3>Consider Encoding, Policies, and Routing</h3>
                             <p>
-                                Here we consider OASIS ID(s) included in JSON telemetry or API request. 
-                                We count raw bytes added by the ID string or packed representation, ignoring other JSON overhead.
-                                
-                                <br/><br/>
-                                OASIS text is approximately ~ 25 bytes, but with quotes & JSON overhead it'd become 27–30 bytes.
-                                Packed OASIS, however, is 8 bytes.
-                                UUID textual would be 36 bytes (36–38 in JSON), whereas 64-bit numeric textual is approx 20 bytes 
-                                (if sent as integer in JSON, overhead would be minimal).
-                            </p>
-
-                            
-                            <br/><br/>
-
-                            <h3>Interpretation</h3>
-                            <p style="color:#101010;">
-                                OASIS textual IDs cost more per message than 64-bit integers but less than UUID text. 
-                                Using an 8-byte packed transport yields near-optimal bandwidth cost while retaining textual form in logs.
+                               Before deployment, review how your OASIS identifiers will behave across systems. 
+                                Ensure consistent character encoding (UTF-8 is recommended), define naming and access policies for 
+                                creation and modification, and plan routing behavior for distributed or hierarchical networks. 
+                                These details govern how identities travel, resolve, and interconnect — forming the backbone of a stable, 
+                                interoperable OASIS-based ecosystem.
                             </p>
                         </div>
 
 
-
-                        <!-- ------------------------------------------------------------------ -->
-
-
-                        <div class="problem-card-left" style="grid-column: span 5;">
-                            <h3>Comparison throughput & SIMD / CPU cost of comparisons</h3>
-                            <p>
-                                8-byte integer compare takes ~1–5 CPU cycles (load + compare).
-                                25-byte string compare (likely differing early), in general, would take
-                                4–15 cycles (depends on first differing byte and memory locality). 
-                                In the worst case, the whole string may need to be checked - increasing the cycle count.
-                                36-byte UUID string would perform similar or slightly worse.
-                                
-                                <br/><br/>
-                                OASIS text is approximately ~ 25 bytes, but with quotes & JSON overhead it'd become 27–30 bytes.
-                                Packed OASIS, however, is 8 bytes.
-                                UUID textual would be 36 bytes (36–38 in JSON), whereas 64-bit numeric textual is approx 20 bytes 
-                                (if sent as integer in JSON, overhead would be minimal).
-                            </p>
-
-                            
-                            <br/><br/>
-
-                            <h3>Interpretation</h3>
-                            <p style="color:#101010;">
-                                For multiple comparisons: integer compares outperform textual (and thus OASIS ID) compares by ~2–8× 
-                                depending on match distribution and caching. 
-                                If packed OASIS (8 bytes) is used, comparisons will however become are as fast as numeric case.
-                            </p>
-                        </div>
 
 
 
